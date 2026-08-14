@@ -4,7 +4,14 @@ Where Gordon Bellamy has appeared, in his own footage and in other people's fram
 
 **Live:** https://gordonusc.github.io/media-log/
 
-Three decades across film, television, panels, podcasts and print. Every entry checked against a named source.
+Three decades across film, television, panels, podcasts and print. **50 entries**, every one checked against a named source.
+
+The finding the page is built on: **28 of the 50 are him on a stage.** Only 7 are on camera. He is not a documentary subject who occasionally speaks, he is a speaker who occasionally gets filmed.
+
+## Two versions
+
+- **[The Record](https://gordonusc.github.io/media-log/)** — the default. Career-shape chart, marquee pieces, full filterable index.
+- **[The eye-gaze version](https://gordonusc.github.io/media-log/eyes.html)** — built for navigating by eye tracking or a switch. Every target is at least 88px on its shortest side with 28px gutters, nothing activates on hover, one card at a time instead of scrolling, and an optional dwell timer you set yourself (off by default).
 
 ## Companion site
 
