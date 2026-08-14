@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Record: Gordon Bellamy on other people's screens, stages, and pages</title>
+<meta name="description" content="Thirty years of Gordon Bellamy in front of other people's cameras, microphones, audiences, and bylines. From Madden NFL 95 to Cannes 2026, catalogued and playable.">
+<meta property="og:title" content="The Record: Gordon Bellamy in public">
+<meta property="og:description" content="Thirty years of Gordon Bellamy across film, television, panels, podcasts, and print. All of it in one place, with the receipts.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0A0B10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230A0B10' stroke='%23E4B048' stroke-width='2'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' text-anchor='middle' fill='%23E4B048'%3EG%3C/text%3E%3C/svg%3E">
+
+<style>
+/* ------------------------------------------------------------------
+   THE RECORD
+   Editorial dark theme. Committed single theme on purpose.
+   No em dashes. No en dashes. No unstated fonts.
+   ------------------------------------------------------------------ */
+
+:root{
+  color-scheme:dark;
+  --stage:oklch(0.16 0.014 260);        /* near-black with cool cast */
+  --deep:oklch(0.11 0.012 260);
+  --panel:oklch(0.20 0.016 260);
+  --panel2:oklch(0.24 0.020 260);
+  --ink:oklch(0.97 0.008 90);           /* warm paper */
+  --ink2:oklch(0.74 0.014 260);
+  --dim:oklch(0.54 0.014 260);
+  --rule:oklch(0.28 0.020 260);
+  --gold:oklch(0.79 0.135 82);          /* editorial warm gold, not TV-set gold */
+  --coral:oklch(0.72 0.145 30);         /* soft coral for stage entries */
+  --teal:oklch(0.83 0.108 195);         /* watchable / linked */
+  --plum:oklch(0.63 0.140 320);         /* mic / podcasts */
+  --sage:oklch(0.79 0.075 155);         /* awards */
+  --measure:66ch;
+  --radius:3px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--stage);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI Variable","Segoe UI",Inter,"Helvetica Neue",Arial,sans-serif;
+  font-size:clamp(15.5px,.94rem + .2vw,17.5px);line-height:1.62;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:clip}
+h1,h2,h3,h4,.serif{font-family:ui-serif,Charter,"Sitka Text",Cambria,Georgia,"Times New Roman",serif;
+  text-wrap:balance;margin:0;font-weight:500;letter-spacing:-.008em}
+p{margin:0;text-wrap:pretty}
+a{color:var(--gold);text-decoration:none;text-underline-offset:3px;
+  border-bottom:1px solid oklch(from var(--gold) l c h / .35);transition:border-color .15s,color .15s}
+a:hover{border-bottom-color:var(--gold);color:oklch(from var(--gold) calc(l + .05) c h)}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+.mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  font-variant-numeric:tabular-nums;letter-spacing:.01em}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+/* film grain */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.11;mix-blend-mode:overlay}
+
+/* ------- LAYOUT ------- */
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,4.4vw,52px)}
+.wrap--tight{max-width:900px}
+section{padding:clamp(52px,8vw,110px) 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+
+/* ------- HERO ------- */
+.hero{position:relative;padding:clamp(52px,10vw,120px) 0 clamp(36px,6vw,72px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(65% 55% at 82% 8%,oklch(0.79 0.135 82 / .18),transparent 65%),
+    radial-gradient(45% 40% at 12% 90%,oklch(0.72 0.145 30 / .12),transparent 70%),
+    linear-gradient(180deg,oklch(0.20 0.016 260 / .35),transparent 40%);
+  pointer-events:none}
+.hero > *{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.72rem;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:clamp(20px,3.4vw,30px)}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--gold);
+  box-shadow:0 0 0 0 oklch(from var(--gold) l c h / .5);animation:sig 2.6s infinite}
+@keyframes sig{70%{box-shadow:0 0 0 10px oklch(from var(--gold) l c h / 0)}
+  100%{box-shadow:0 0 0 0 oklch(from var(--gold) l c h / 0)}}
+
+h1{font-size:clamp(3.2rem,1.5rem + 8vw,7.6rem);line-height:.94;font-weight:400;
+  letter-spacing:-.028em}
+h1 em{font-style:italic;color:var(--gold);font-weight:400}
+h1 .plate{display:block;color:var(--ink2);font-size:.42em;letter-spacing:.02em;
+  font-style:normal;margin-top:.4em;line-height:1.15;font-weight:400;text-wrap:balance;max-width:32ch}
+.lede{max-width:56ch;margin-top:clamp(24px,4vw,38px);color:var(--ink2);
+  font-size:clamp(1.06rem,.98rem + .5vw,1.28rem);line-height:1.55}
+
+/* tally */
+.tally{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin-top:clamp(38px,5vw,58px)}
+@media(min-width:640px){.tally{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:960px){.tally{grid-template-columns:repeat(6,1fr)}}
+.tc{background:oklch(0.16 0.014 260 / .92);padding:18px 20px;display:flex;flex-direction:column;gap:4px}
+.tc .k{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim)}
+.tc .v{font-family:ui-serif,Charter,"Sitka Text",Cambria,Georgia,serif;font-weight:500;
+  font-size:clamp(1.6rem,1.2rem + 1.2vw,2.2rem);line-height:1;letter-spacing:-.02em}
+.tc.accent .v{color:var(--gold)}
+
+/* ------- FEATURED / COVER STORY ------- */
+.cover{display:grid;gap:clamp(20px,3vw,32px);
+  grid-template-columns:1fr;margin-top:clamp(30px,4vw,44px)}
+@media(min-width:900px){.cover{grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:auto}}
+.cvr{position:relative;background:linear-gradient(160deg,var(--panel),var(--deep));
+  border:1px solid var(--rule);border-radius:var(--radius);padding:clamp(24px,3vw,36px);
+  overflow:hidden;transition:transform .2s,border-color .2s}
+.cvr:hover{transform:translateY(-3px);border-color:oklch(from var(--gold) l c h / .5)}
+.cvr::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(70% 60% at 20% 0%,var(--_wash,transparent) 0%,transparent 70%);
+  pointer-events:none;opacity:.65}
+.cvr.big{grid-row:span 2;--_wash:oklch(0.79 0.135 82 / .25);
+  padding:clamp(30px,4vw,54px)}
+.cvr.p1{--_wash:oklch(0.72 0.145 30 / .28)}
+.cvr.p2{--_wash:oklch(0.63 0.140 320 / .26)}
+.cvr .stamp{position:relative;font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;display:flex;gap:14px;align-items:center}
+.cvr .stamp b{color:var(--ink2);font-weight:500;letter-spacing:.14em}
+.cvr h3{position:relative;font-size:clamp(1.4rem,1rem + 1.6vw,2.2rem);
+  line-height:1.05;font-style:italic;margin-bottom:8px}
+.cvr.big h3{font-size:clamp(1.9rem,1.2rem + 2.4vw,3.4rem)}
+.cvr .meta{position:relative;font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  font-size:.78rem;color:var(--dim);letter-spacing:.02em;margin-top:6px}
+.cvr .abstract{position:relative;margin-top:clamp(14px,2vw,20px);color:var(--ink2);
+  font-size:.96rem;line-height:1.55;max-width:44ch}
+.cvr .link{position:relative;display:inline-flex;align-items:center;gap:8px;
+  margin-top:clamp(18px,3vw,26px);font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);
+  border-bottom:1px solid oklch(from var(--teal) l c h / .35);padding-bottom:2px}
+.cvr .link:hover{border-bottom-color:var(--teal)}
+.cvr .link .arrow{transition:transform .18s}
+.cvr .link:hover .arrow{transform:translateX(3px)}
+
+/* ------- SECTION MASTHEAD ------- */
+.mast{display:grid;gap:14px;margin-bottom:clamp(30px,4vw,44px)}
+.mast .num{font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+h2{font-size:clamp(2rem,1.2rem + 3.2vw,3.8rem);line-height:1;letter-spacing:-.028em;
+  font-weight:400}
+h2 em{font-style:italic;color:var(--gold)}
+.mast .sub{max-width:var(--measure);color:var(--ink2);font-size:1.02rem;line-height:1.55}
+
+/* ------- FILTER BAR ------- */
+.controls{position:sticky;top:0;z-index:20;background:oklch(0.16 0.014 260 / .88);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);padding:14px 0;margin:clamp(20px,3vw,30px) 0 0}
+.controls .row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:99px;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink2);
+  box-shadow:inset 0 0 0 1px var(--rule);transition:.14s ease;user-select:none}
+.chip:hover{color:var(--ink);box-shadow:inset 0 0 0 1px oklch(from var(--ink) l c h / .35)}
+.chip[aria-pressed="true"]{color:var(--stage);background:var(--gold);
+  box-shadow:inset 0 0 0 1px var(--gold);font-weight:600}
+.chip svg{width:12px;height:12px;flex-shrink:0}
+.chip .n{opacity:.55;font-weight:400}
+.chip[aria-pressed="true"] .n{opacity:.7;color:var(--stage)}
+.search{margin-left:auto;position:relative;min-width:min(220px,100%)}
+.search input{width:100%;padding:9px 14px 9px 34px;background:oklch(0.11 0.012 260);
+  color:var(--ink);border-radius:99px;font:inherit;font-size:.86rem;
+  box-shadow:inset 0 0 0 1px var(--rule);transition:box-shadow .15s}
+.search input::placeholder{color:var(--dim)}
+.search input:focus{box-shadow:inset 0 0 0 1px var(--gold);outline:none}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  width:14px;height:14px;color:var(--dim)}
+
+/* ------- THE RECORD (main list) ------- */
+.record{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  margin-top:clamp(22px,3vw,32px);border-radius:var(--radius);overflow:hidden}
+.entry{background:var(--stage);padding:clamp(18px,2.6vw,26px) clamp(20px,3vw,30px);
+  display:grid;gap:14px;grid-template-columns:1fr;position:relative;
+  transition:background .16s}
+@media(min-width:820px){
+  .entry{grid-template-columns:5.4rem 3.6rem 1fr 12rem;gap:20px;
+    align-items:start}
+}
+.entry:hover{background:oklch(0.19 0.016 260)}
+.entry.hidden{display:none}
+.entry .year{font-family:ui-serif,Charter,"Sitka Text",Cambria,Georgia,serif;
+  font-size:1.6rem;line-height:1;letter-spacing:-.02em;color:var(--ink2);
+  font-variant-numeric:tabular-nums}
+.entry .badge{display:flex;align-items:center;gap:6px;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);padding:5px 8px;border-radius:2px;
+  box-shadow:inset 0 0 0 1px var(--rule);width:max-content;height:max-content}
+.entry .badge svg{width:11px;height:11px;flex-shrink:0}
+.entry[data-cat="screen"] .badge{color:var(--gold)}
+.entry[data-cat="stage"] .badge{color:var(--coral)}
+.entry[data-cat="mic"] .badge{color:var(--plum)}
+.entry[data-cat="print"] .badge{color:var(--ink2)}
+.entry[data-cat="game"] .badge{color:var(--teal)}
+.entry[data-cat="personal"] .badge{color:var(--sage)}
+.entry .body{display:grid;gap:6px;min-width:0}
+.entry .title{font-family:ui-serif,Charter,"Sitka Text",Cambria,Georgia,serif;
+  font-size:clamp(1.1rem,1rem + .4vw,1.3rem);line-height:1.25;font-weight:500;
+  letter-spacing:-.01em}
+.entry .title em{font-style:italic;font-weight:500}
+.entry .credit{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.74rem;
+  color:var(--dim);letter-spacing:.03em}
+.entry .credit b{color:var(--ink2);font-weight:500}
+.entry .note{color:var(--ink2);font-size:.94rem;line-height:1.5;max-width:60ch}
+.entry .watch{align-self:start;justify-self:start}
+@media(min-width:820px){.entry .watch{justify-self:end;text-align:right}}
+.entry .watch a{display:inline-flex;align-items:center;gap:6px;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.72rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--teal);padding-bottom:1px;border-bottom:1px solid oklch(from var(--teal) l c h / .3)}
+.entry .watch a:hover{border-bottom-color:var(--teal)}
+.entry .watch .none{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--dim);border:0}
+
+.empty{padding:60px 20px;text-align:center;color:var(--dim);font-style:italic}
+.empty.show{display:block}
+.empty{display:none}
+
+/* ------- AWARDS callout ------- */
+.awards{display:grid;gap:clamp(16px,2.4vw,22px);grid-template-columns:1fr;
+  margin-top:clamp(24px,3vw,34px)}
+@media(min-width:780px){.awards{grid-template-columns:1fr 1fr}}
+.award{position:relative;padding:clamp(24px,3vw,34px);border:1px solid var(--rule);
+  border-radius:var(--radius);background:linear-gradient(160deg,var(--panel),var(--deep));
+  overflow:hidden}
+.award::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(60% 55% at 15% 0%,oklch(0.79 0.075 155 / .18),transparent 70%);
+  pointer-events:none}
+.award .stamp{position:relative;font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);
+  margin-bottom:16px}
+.award h3{position:relative;font-style:italic;font-size:clamp(1.4rem,1rem + 1.4vw,2rem);
+  line-height:1.1}
+.award .meta{position:relative;font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  font-size:.78rem;color:var(--dim);margin-top:8px}
+.award p{position:relative;color:var(--ink2);margin-top:16px;max-width:52ch;line-height:1.55}
+.award p b{color:var(--ink);font-weight:500}
+
+/* ------- GAME SHOWS band (points to Tape Log) ------- */
+.gameband{margin-top:clamp(30px,4vw,44px);border:1px solid var(--rule);border-radius:var(--radius);
+  overflow:hidden;background:linear-gradient(160deg,var(--panel),var(--deep));position:relative}
+.gameband::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(70% 60% at 85% 40%,oklch(0.79 0.135 82 / .18),transparent 70%);
+  pointer-events:none}
+.gameband .inner{position:relative;padding:clamp(30px,4.5vw,54px);display:grid;gap:22px;
+  grid-template-columns:1fr;align-items:end}
+@media(min-width:900px){.gameband .inner{grid-template-columns:1.4fr 1fr}}
+.gameband .stamp{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.68rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.gameband h3{font-family:ui-serif,Charter,"Sitka Text",Cambria,Georgia,serif;
+  font-size:clamp(1.6rem,1rem + 2vw,2.8rem);line-height:1.05;font-style:italic;font-weight:500}
+.gameband p{color:var(--ink2);margin-top:16px;max-width:52ch;line-height:1.55}
+.gameband .counts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:2px}
+.gameband .cbox{background:oklch(0.16 0.014 260 / .88);padding:14px 16px;text-align:center}
+.gameband .cbox .k{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.6rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--dim);display:block}
+.gameband .cbox .v{font-family:ui-serif,Charter,"Sitka Text",Cambria,Georgia,serif;
+  font-size:1.7rem;line-height:1;margin-top:6px;display:block;letter-spacing:-.02em}
+.gameband .cbox.w .v{color:var(--sage)}
+.gameband .cbox.l .v{color:var(--coral)}
+.gameband .cta{margin-top:24px;display:inline-flex;align-items:center;gap:9px;
+  padding:12px 22px;border-radius:2px;background:var(--gold);color:var(--stage);
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;transition:filter .12s,transform .12s;border:0}
+.gameband .cta:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.gameband .cta .arrow{transition:transform .18s}
+.gameband .cta:hover .arrow{transform:translateX(3px)}
+
+/* ------- MARGINALIA ------- */
+.marginalia{display:grid;gap:14px;margin-top:clamp(24px,3vw,34px);
+  grid-template-columns:1fr}
+@media(min-width:820px){.marginalia{grid-template-columns:1fr 1fr}}
+.marg{padding:clamp(22px,3vw,30px);border:1px solid var(--rule);border-radius:var(--radius);
+  background:var(--stage);display:grid;gap:10px;transition:transform .16s,border-color .16s}
+.marg:hover{transform:translateY(-2px);border-color:oklch(from var(--sage) l c h / .4)}
+.marg .stamp{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.66rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--sage)}
+.marg h4{font-family:ui-serif,Charter,"Sitka Text",Cambria,Georgia,serif;font-size:1.2rem;
+  font-style:italic;line-height:1.2;font-weight:500}
+.marg p{color:var(--ink2);font-size:.94rem;line-height:1.55}
+
+/* ------- PULLQUOTE strip ------- */
+.pulls{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:var(--radius);margin-top:clamp(24px,3vw,34px);overflow:hidden}
+@media(min-width:900px){.pulls{grid-template-columns:1fr 1fr}}
+blockquote{margin:0;background:var(--stage);padding:clamp(24px,3vw,32px);
+  display:flex;flex-direction:column;gap:16px;transition:background .16s}
+blockquote:hover{background:oklch(0.19 0.016 260)}
+blockquote p{font-family:ui-serif,Charter,"Sitka Text",Cambria,Georgia,serif;font-style:italic;
+  font-size:clamp(1.1rem,1rem + .6vw,1.4rem);line-height:1.35;text-wrap:balance;
+  font-weight:400}
+blockquote cite{font-style:normal;font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  font-size:.72rem;letter-spacing:.08em;color:var(--dim);margin-top:auto;
+  padding-top:12px;border-top:1px solid var(--rule)}
+
+/* ------- FOOTER ------- */
+footer{padding:clamp(48px,7vw,90px) 0 clamp(60px,9vw,110px);border-top:1px solid var(--rule);
+  color:var(--dim)}
+footer .cols{display:grid;gap:clamp(22px,3vw,32px);grid-template-columns:1fr}
+@media(min-width:780px){footer .cols{grid-template-columns:1.4fr 1fr}}
+footer h4{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink2);margin-bottom:14px}
+footer p{font-size:.9rem;line-height:1.6;margin-bottom:12px;max-width:60ch}
+footer b{color:var(--ink2);font-weight:500}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.86rem}
+footer li{color:var(--dim)}
+footer li b{color:var(--ink2);font-weight:500}
+footer .colophon{margin-top:clamp(36px,5vw,50px);padding-top:24px;border-top:1px solid var(--rule);
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.72rem;letter-spacing:.06em;
+  color:var(--dim)}
+
+/* ------- MOTION ------- */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .eyebrow i{animation:none}
+}
+@media(prefers-reduced-motion:no-preference){
+  @supports(animation-timeline:view()){
+    .cvr,.entry,.marg,.award,blockquote,.gameband{
+      animation:rise linear both;animation-timeline:view();
+      animation-range:entry 0% entry 34%}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  }
+}
+
+/* ------- SMALL FIXES ------- */
+::selection{background:oklch(from var(--gold) l c h / .35);color:var(--ink)}
+
+</style>
+</head>
+<body>
+
+<svg class="grain" aria-hidden="true">
+  <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3"/></filter>
+  <rect width="100%" height="100%" filter="url(#g)"/>
+</svg>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><i></i>On the record since 1993</div>
+    <h1>The <em>Record</em>.
+      <span class="plate">Where Gordon Bellamy has appeared, in his own footage and in other people's frames.</span>
+    </h1>
+    <p class="lede">Three decades across film, television, panels, podcasts, and print. Every entry checked against a named source. What follows is what other people put in a frame, on a stage, or into a microphone with him inside it.</p>
+
+    <div class="tally" role="group" aria-label="Career tally">
+      <div class="tc"><span class="k">Total entries</span><span class="v">43</span></div>
+      <div class="tc"><span class="k">First</span><span class="v">1993</span></div>
+      <div class="tc accent"><span class="k">On camera</span><span class="v">7</span></div>
+      <div class="tc"><span class="k">Panels &amp; talks</span><span class="v">22</span></div>
+      <div class="tc"><span class="k">Podcasts</span><span class="v">3</span></div>
+      <div class="tc accent"><span class="k">Awards</span><span class="v">2</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= COVER STORY ================= -->
+<section class="wrap">
+  <div class="mast">
+    <span class="num">§ 01 · Cover story</span>
+    <h2>Three tent poles.</h2>
+    <p class="sub">If you are meeting him for the first time and you have twenty minutes, watch these in this order.</p>
+  </div>
+
+  <div class="cover">
+    <a class="cvr big" href="https://www.primevideo.com/detail/0OEFSGZIBTB9U8C8MDSHANVC87" target="_blank" rel="noopener">
+      <div class="stamp"><span>2024</span><b>Prime Video</b><span>Documentary</span></div>
+      <h3><em>It's in the Game: Madden NFL</em></h3>
+      <div class="meta">Four episodes. He appears throughout. Episode 2, <b>Pressure Makes Diamonds</b>, is where his own story lives.</div>
+      <p class="abstract">The definitive Madden retrospective and the most complete on-screen treatment of the franchise Gordon helped shape as EA's Rookie of the Year in 1994. Watch episode two first.</p>
+      <span class="link">Watch on Prime Video <span class="arrow">&rarr;</span></span>
+    </a>
+
+    <a class="cvr p1" href="https://www.netflix.com/title/81019087" target="_blank" rel="noopener">
+      <div class="stamp"><span>2020</span><b>Netflix</b></div>
+      <h3><em>High Score</em></h3>
+      <div class="meta">Season 1, Episode 4. <b>This Is War.</b></div>
+      <p class="abstract">The Madden representation story, told at Netflix scale. Still in heavy rotation five years later.</p>
+      <span class="link">Watch on Netflix <span class="arrow">&rarr;</span></span>
+    </a>
+
+    <div class="cvr p2">
+      <div class="stamp"><span>2026</span><b>Cannes American Pavilion</b></div>
+      <h3><em>So Be It</em></h3>
+      <div class="meta">Directed by <b>Matthew Sorgie</b>. Gordon and Joe Heally as the subjects.</div>
+      <p class="abstract">First animated film with the two of them at the center. Premiered week of May 13, 2026 at the American Pavilion, Cannes.</p>
+      <span class="link" style="color:var(--dim);border-bottom-color:transparent">Festival circuit ongoing</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE FULL RECORD ================= -->
+<section id="record" class="wrap">
+  <div class="mast">
+    <span class="num">§ 02 · The full record</span>
+    <h2>Everything, <em>filterable</em>.</h2>
+    <p class="sub">Sorted by year, newest first. Filter by medium. Search the title, the show, the venue, the co-host.</p>
+  </div>
+
+  <div class="controls" aria-label="Filter the record">
+    <div class="row">
+      <div class="chips" role="group" aria-label="Filter by medium">
+        <button class="chip" data-filter="all" aria-pressed="true">All <span class="n">(43)</span></button>
+        <button class="chip" data-filter="screen" aria-pressed="false">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="2.5" width="10" height="7" rx="1"/><path d="M4.5 5.2v1.6l1.6-.8z" fill="currentColor" stroke="none"/></svg>
+          On camera <span class="n">(7)</span></button>
+        <button class="chip" data-filter="stage" aria-pressed="false">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h8M6 8v-4M4 4h4M3 2l1 2M9 2l-1 2"/></svg>
+          On stage <span class="n">(22)</span></button>
+        <button class="chip" data-filter="mic" aria-pressed="false">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4.5" y="1.5" width="3" height="5.5" rx="1.5"/><path d="M2.8 6c0 2 1.4 3.4 3.2 3.4S9.2 8 9.2 6M6 9.4V11"/></svg>
+          On mic <span class="n">(3)</span></button>
+        <button class="chip" data-filter="print" aria-pressed="false">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 2h5l2 2v6h-7z"/><path d="M7.5 2v2h2M4 6h4M4 8h3"/></svg>
+          In print <span class="n">(5)</span></button>
+        <button class="chip" data-filter="game" aria-pressed="false">
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4.5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/><path d="M4.5 5.5v1M4 6h1M8 5.5v.5M8 7v.5"/></svg>
+          On credits <span class="n">(5)</span></button>
+      </div>
+      <div class="search">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4">
+          <circle cx="6" cy="6" r="4.2"/><path d="M9.2 9.2L12 12"/>
+        </svg>
+        <input id="q" type="search" placeholder="Search title, venue, host">
+      </div>
+    </div>
+  </div>
+
+  <div class="record" id="records">
+
+    <!-- 2026 -->
+    <div class="entry" data-cat="stage" data-year="2026" data-search="cee stem congressional caucus reception washington dc bellamy featured speaker">
+      <span class="year mono">2026</span>
+      <span class="badge">Keynote<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">CEE Congressional STEM Education Caucus Reception</h4>
+        <div class="credit"><b>Featured speaker</b> · Washington, DC · March 5, 2026</div>
+        <p class="note">Gordon returned to the Center for Excellence in Education as a Research Science Institute '87 alum to keynote the Hill reception.</p>
+      </div>
+      <div class="watch"><a href="https://www.cee.org/gordon-bellamy-featured-speaker-cee-congressional-reception" target="_blank" rel="noopener">Read the notice <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2026" data-search="gdc side quest podcast live beth elderkin session festival gaming">
+      <span class="year mono">2026</span>
+      <span class="badge">GDC live<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">GDC Side Quest Podcast Live: Gordon Bellamy</h4>
+        <div class="credit">In conversation with <b>Beth Elderkin</b> · Game Developers Conference 2026</div>
+        <p class="note">A 30-minute live podcast recording at the "Festival of Gaming" rebrand year.</p>
+      </div>
+      <div class="watch"><a href="https://schedule.gdconf.com/session/gdc-side-quest-podcast-live-gordon-bellamy/918284" target="_blank" rel="noopener">GDC agenda <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="personal" data-year="2026" data-search="so be it cannes american pavilion matthew sorgie joe heally animated documentary">
+      <span class="year mono">2026</span>
+      <span class="badge">Cannes<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>So Be It</em></h4>
+        <div class="credit">Directed by <b>Matthew Sorgie</b> · American Pavilion, Cannes 2026 · With Joe Heally</div>
+        <p class="note">First animated film with Gordon and Joe as subjects. Sorgie's calling-card project on the festival circuit.</p>
+      </div>
+      <div class="watch"><span class="none">Festival only</span></div>
+    </div>
+
+    <!-- 2025 -->
+    <div class="entry" data-cat="print" data-year="2025" data-search="gamereactor sdcc malaga david caballero inclusivity spain iban lobo">
+      <span class="year mono">2025</span>
+      <span class="badge">Press<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Gamereactor: SDCC Málaga press cluster</h4>
+        <div class="credit"><b>Four articles</b> by David Caballero · Oct 31 to Nov 9, 2025</div>
+        <p class="note">Inclusivity; how Madden inspired FIFA/EA Sports FC; the Barcelona Dragons anecdote; and how modern sports games handle injuries. New-to-record color, all four.</p>
+      </div>
+      <div class="watch"><a href="https://www.gamereactor.eu/video/765483/Gordon+Bellamy+touches+on-inclusivity-in-video-games/" target="_blank" rel="noopener">Watch the interview <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2025" data-search="gdc state of the game industry panel inaugural 2025">
+      <span class="year mono">2025</span>
+      <span class="badge">GDC panel<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">2025 GDC State of the Game Industry Panel</h4>
+        <div class="credit">Inaugural cross-industry panel · Game Developers Conference</div>
+        <p class="note">One of the panelists asked to define the state of the field for the entire conference. First year of the format.</p>
+      </div>
+      <div class="watch"><a href="https://gdcvault.com/play/1034964/2025-GDC-State-of-the" target="_blank" rel="noopener">GDC Vault <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2025" data-search="navigating leadership lgbtq managers gaming ryan canuel elaine gomez nicole lewis gdc">
+      <span class="year mono">2025</span>
+      <span class="badge">GDC panel<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Navigating Leadership: Insights from LGBTQ+ Managers in Gaming</h4>
+        <div class="credit">With <b>Ryan Canuel, Elaine Gomez-Sanchez, Nicole Lewis</b> · GDC 2025</div>
+        <p class="note">Leadership-track panel. Career and management focus, not identity as topic.</p>
+      </div>
+      <div class="watch"><a href="https://gdcvault.com/play/1034710/Navigating-Leadership-Insights-from-LGBTQ" target="_blank" rel="noopener">GDC Vault <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="mic" data-year="2025" data-search="forged in fire podcast lgbtq leadership can't win without risk">
+      <span class="year mono">2025</span>
+      <span class="badge">Podcast<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Forged in Fire: <em>Can't Win Without Risk</em></h4>
+        <div class="credit">LGBTQ+ leadership podcast · 2025</div>
+        <p class="note">On how his intersecting identities shaped his leadership philosophy, and the bold risk of pushing representation into Madden NFL 95.</p>
+      </div>
+      <div class="watch"><a href="https://www.forgedinfire.org/Gordon_Bellamy" target="_blank" rel="noopener">Episode <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="mic" data-year="2025" data-search="valued cultures podcast digital civics daryl ogden usc july">
+      <span class="year mono">2025</span>
+      <span class="badge">Podcast<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Valued Cultures: <em>Digital Civics</em></h4>
+        <div class="credit">Host <b>Daryl Ogden</b> · July 9, 2025</div>
+        <p class="note">Long-form on his brute-force entry into gaming, mentorship, digital civics, GGP, and the Collegiate Games Challenge.</p>
+      </div>
+      <div class="watch"><a href="https://www.playmakerspodcast.com/episodes/5" target="_blank" rel="noopener">Listen <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2025" data-search="uconn digital media design fireside chat">
+      <span class="year mono">2025</span>
+      <span class="badge">Fireside<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">UConn Digital Media &amp; Design: A Talk with Gordon Bellamy</h4>
+        <div class="credit">University of Connecticut · Recorded fireside chat</div>
+        <p class="note">Academic-facing conversation on his career, teaching philosophy, and DEI-in-games arc.</p>
+      </div>
+      <div class="watch"><a href="https://www.youtube.com/watch?v=Lb8ZcOXPQ-I" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="entry" data-cat="screen" data-year="2024" data-search="its in the game madden nfl amazon prime video documentary pressure makes diamonds">
+      <span class="year mono">2024</span>
+      <span class="badge">Doc series<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>It's in the Game: Madden NFL</em></h4>
+        <div class="credit">Prime Video · 4 episodes · Featured heavily in E2 <b>Pressure Makes Diamonds</b></div>
+        <p class="note">The definitive Madden retrospective. Gordon at the center of the representation chapter, in his own words for the first time at that scale.</p>
+      </div>
+      <div class="watch"><a href="https://www.primevideo.com/detail/0OEFSGZIBTB9U8C8MDSHANVC87" target="_blank" rel="noopener">Prime Video <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2024" data-search="mdev madison wisconsin games alliance keynote midwest heartland">
+      <span class="year mono">2024</span>
+      <span class="badge">Keynote<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">MDEV 2024 (Midwest Games Alliance)</h4>
+        <div class="credit"><b>Day-one keynote</b> · Madison, WI · October 7, 2024</div>
+        <p class="note">On the Midwest as a quiet powerhouse in game development. Gordon put GGP and the Collegiate Games Challenge into the same frame as the region's studios.</p>
+      </div>
+      <div class="watch"><a href="https://www.wisconsingamesalliance.com/news/industry-executive-usc-professor-gordon-bellamy-to-keynote-mdev-day-1" target="_blank" rel="noopener">Announcement <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2024" data-search="ign live 2024 pride panel erika ishii queer video games favorite">
+      <span class="year mono">2024</span>
+      <span class="badge">Pride panel<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">IGN Live 2024: Our Favorite Queer Video Games</h4>
+        <div class="credit">With <b>Erika Ishii</b> · June 2024</div>
+        <p class="note">Full Pride Month panel. Personal perspective plus specific game discussion.</p>
+      </div>
+      <div class="watch"><a href="https://www.ign.com/videos/ign-celebrates-our-favorite-queer-video-games-this-pride-month-ign-live-2024" target="_blank" rel="noopener">IGN <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2024" data-search="carolinas youth mentoring symposium keynote">
+      <span class="year mono">2024</span>
+      <span class="badge">Keynote<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Carolinas Youth Mentoring Symposium</h4>
+        <div class="credit"><b>Keynote speaker</b> · 2024</div>
+        <p class="note">The mentoring circuit, which is a whole other lane of his work and rarely surfaces in industry write-ups.</p>
+      </div>
+      <div class="watch"><a href="https://youthmentoringcollaborative.org/2024cyms/" target="_blank" rel="noopener">Program <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2024" data-search="voices of authenticity casting best practices gdc panel">
+      <span class="year mono">2024</span>
+      <span class="badge">GDC panel<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Voices of Authenticity: Best Practices for Casting</h4>
+        <div class="credit">GDC 2024 panel · Authenticity in game character voice</div>
+        <p class="note">Craft-focused, casting-focused. Not identity as topic, but authenticity as design constraint.</p>
+      </div>
+      <div class="watch"><a href="https://gdcvault.com/play/1034709/Voices-of-Authenticity-Best-Practices" target="_blank" rel="noopener">GDC Vault <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="entry" data-cat="screen" data-year="2023" data-search="rewind the 90s national geographic hulu disney plus documentary five episodes">
+      <span class="year mono">2023</span>
+      <span class="badge">Doc series<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>Rewind the '90s</em></h4>
+        <div class="credit">Nat Geo / Hulu · <b>5 episodes</b>: Teenage Dreams, Future Shock, Mass Appeal, What Is Love?, Decade of Disruption</div>
+        <p class="note">Cast as the 90s gaming culture voice across five episodes of the National Geographic decade-retrospective. Also included a Snake-on-Nokia segment.</p>
+      </div>
+      <div class="watch"><a href="https://www.hulu.com/series/rewind-the-90s-a97ed9f5-849e-4c47-9347-d5188c3e9d55" target="_blank" rel="noopener">Hulu <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="print" data-year="2023" data-search="daily trojan amelia neilson-slabach usc redefining default representation">
+      <span class="year mono">2023</span>
+      <span class="badge">Print<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Daily Trojan: <em>Redefining the default</em></h4>
+        <div class="credit">By <b>Amelia Neilson-Slabach</b> · February 3, 2023</div>
+        <p class="note">The best single-source portrait of him as USC faculty. Quotes on default players, shared language, and what makes his first job the one that taught him collaborative creation.</p>
+      </div>
+      <div class="watch"><span class="none">Search USC archive</span></div>
+    </div>
+
+    <div class="entry" data-cat="print" data-year="2023" data-search="nzxt pride pioneering voice lgbtqia+ inclusion gaming hardware">
+      <span class="year mono">2023</span>
+      <span class="badge">Interview<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">NZXT: <em>Gaming's Pioneering Voice for LGBTQIA+ Inclusion</em></h4>
+        <div class="credit">Hardware brand Pride Industry Spotlight · 2023</div>
+        <p class="note">Long-form Q&amp;A on EA to GGP, and on philosophy over slogan. NZXT audience of PC gamers is squarely GGP demographic.</p>
+      </div>
+      <div class="watch"><span class="none">NZXT.com</span></div>
+    </div>
+
+    <div class="entry" data-cat="screen" data-year="2023" data-search="proud in a pandemic documentary lgbtq cast">
+      <span class="year mono">2023</span>
+      <span class="badge">Doc credit<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>Proud in a Pandemic</em></h4>
+        <div class="credit">Documentary · 2023 · Listed cast</div>
+        <p class="note">Credited in the cast. Public sources do not yet specify the extent of his appearance.</p>
+      </div>
+      <div class="watch"><a href="https://watch.plex.tv/movie/proud-in-a-pandemic-2023/credits" target="_blank" rel="noopener">Plex credits <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2023" data-search="reimagining game industry education boosting talent pipeline microsoft unity urban arts gdc">
+      <span class="year mono">2023</span>
+      <span class="badge">GDC panel<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Reimagining Game Industry Education</h4>
+        <div class="credit">GDC 2023 · With Microsoft, Unity, Urban Arts contributors</div>
+        <p class="note">The education-and-access panel. Directly upstream of CYSTEM and the Directory.</p>
+      </div>
+      <div class="watch"><a href="https://gdcvault.com/play/1029297/Reimagining-Game-Industry-Education-Boosting" target="_blank" rel="noopener">GDC Vault <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="entry" data-cat="stage" data-year="2022" data-search="afrotech executive los angeles onstage">
+      <span class="year mono">2022</span>
+      <span class="badge">Onstage<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">AFROTECH Executive Los Angeles</h4>
+        <div class="credit"><b>Onstage appearance</b> · September 22, 2022</div>
+        <p class="note">Getty documented the room. AFROTECH's LA executive summit put him in a very different peer set than the GDC circuit.</p>
+      </div>
+      <div class="watch"><a href="https://www.gettyimages.com/photos/gordon-bellamy" target="_blank" rel="noopener">Getty event record <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2022" data-search="games for change festival g4c speaker 2022">
+      <span class="year mono">2022</span>
+      <span class="badge">Festival<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Games for Change Festival 2022</h4>
+        <div class="credit">Speaker · G4C festival</div>
+        <p class="note">Two years after the Vanguard Award, back at the same festival as a speaker. The relationship is a through-line.</p>
+      </div>
+      <div class="watch"><a href="https://g4c2022.sched.com/speaker/gordon_bellamy.244f101i" target="_blank" rel="noopener">Schedule profile <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2022" data-search="build your career in games like it's an rpg gdc panel">
+      <span class="year mono">2022</span>
+      <span class="badge">GDC panel<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Build Your Career in Games Like It's an RPG</h4>
+        <div class="credit">GDC 2022 · Career advice panel</div>
+        <p class="note">One of the most cited career-track sessions of that year. Useful when you want to hand a student one link.</p>
+      </div>
+      <div class="watch"><a href="https://gdcvault.com/play/1027708/Build-Your-Career-in-Games" target="_blank" rel="noopener">GDC Vault <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2021 -->
+    <div class="entry" data-cat="print" data-year="2021" data-search="usc today elisa huang future of video games games are a global phenomenon language">
+      <span class="year mono">2021</span>
+      <span class="badge">Print<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">USC Today: <em>The Future of Video Games</em></h4>
+        <div class="credit">By <b>Elisa Huang</b> · March 16, 2021</div>
+        <p class="note">The interview that gave us "games are a language that is shared everywhere in the world." Still the cleanest thesis of his teaching.</p>
+      </div>
+      <div class="watch"><span class="none">USC Today archive</span></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2021" data-search="bakersfield college distinguished speaker series virtual november">
+      <span class="year mono">2021</span>
+      <span class="badge">Speaker series<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Bakersfield College Distinguished Speaker Series</h4>
+        <div class="credit">Virtual presentation · November 10, 2021</div>
+        <p class="note">Community college distinguished-speaker slot. A pattern of accepting invitations from institutions that are not the usual ones.</p>
+      </div>
+      <div class="watch"><a href="https://www.kget.com/news/local-news/gordon-bellamy-usc-professor-and-madden-nfl-game-designer-next-up-in-bcs-distinguished-speaker-series/" target="_blank" rel="noopener">Local coverage <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2021" data-search="e3 take-two diversity panel video game industry biggest stage">
+      <span class="year mono">2021</span>
+      <span class="badge">Trade show<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">E3 Take-Two Diversity Panel</h4>
+        <div class="credit"><b>E3 2021</b> · Diversity panel with Take-Two</div>
+        <p class="note">Same room where product cycles get announced. His name on a diversity panel at that scale is a specific choice by both parties.</p>
+      </div>
+      <div class="watch"><a href="https://www.cnet.com/tech/gaming/e3-2021-discusses-diversity-on-the-video-game-industrys-biggest-stage/" target="_blank" rel="noopener">CNET coverage <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2020 -->
+    <div class="entry" data-cat="screen" data-year="2020" data-search="high score netflix this is war episode 4 madden representation black players">
+      <span class="year mono">2020</span>
+      <span class="badge">Doc series<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>High Score</em>, S1E4 <em>This Is War</em></h4>
+        <div class="credit">Netflix · August 19, 2020</div>
+        <p class="note">The Netflix show that made the representation story known to a general audience. Still in rotation.</p>
+      </div>
+      <div class="watch"><a href="https://www.netflix.com/title/81019087" target="_blank" rel="noopener">Netflix <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="print" data-year="2020" data-search="sports illustrated realism ea sports madden series high score companion">
+      <span class="year mono">2020</span>
+      <span class="badge">Video interview<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Sports Illustrated: <em>Bringing Realism to EA Sports' Madden Series</em></h4>
+        <div class="credit">SI companion to High Score · August 19, 2020</div>
+        <p class="note">Short mainstream video interview that ran the day the Netflix show landed. The clean 90-second version of the Madden story.</p>
+      </div>
+      <div class="watch"><a href="https://www.si.com/extra-mustard/video/2020/08/19/bringing-realism-to-ea-sports-madden-series" target="_blank" rel="noopener">SI video <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="screen" data-year="2020" data-search="anatomy of a game usc youtube documentary the next big thing kaplan effect gordon bellamy teaches">
+      <span class="year mono">2020</span>
+      <span class="badge">Doc series<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>Anatomy of a Game</em></h4>
+        <div class="credit">USC / YouTube documentary series · 2020</div>
+        <p class="note">The series that chronicles his USC video-game-appreciation course, with him at the center. Includes <em>The Next Big Thing</em> and <em>The Kaplan Effect</em>.</p>
+      </div>
+      <div class="watch"><a href="https://www.youtube.com/watch?v=upYuDtaChUY" target="_blank" rel="noopener">Watch The Next Big Thing <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2020" data-search="games for change virtual festival keynote at the table finding community">
+      <span class="year mono">2020</span>
+      <span class="badge">Keynote<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Games for Change Virtual Festival: <em>At the Table</em></h4>
+        <div class="credit">G4C 2020 keynote · <b>Finding community at Games for Change</b></div>
+        <p class="note">The keynote that followed the Vanguard Award. A statement piece.</p>
+      </div>
+      <div class="watch"><a href="https://www.youtube.com/playlist?list=PL1G85ERLMItAIUEX8NGbdrkJ0l-2fvcof" target="_blank" rel="noopener">Festival playlist <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2019 -->
+    <div class="entry" data-cat="screen" data-year="2019" data-search="jeff goldblum disney plus national geographic world according to gaming episode 6">
+      <span class="year mono">2019</span>
+      <span class="badge">Doc series<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>The World According to Jeff Goldblum</em>, S1E6 <em>Gaming</em></h4>
+        <div class="credit">Disney+ / National Geographic · December 13, 2019</div>
+        <p class="note">Featured expert in the gaming episode of Goldblum's Disney+ signature series.</p>
+      </div>
+      <div class="watch"><a href="https://www.disneyplus.com/series/the-world-according-to-jeff-goldblum/6W1QCVHcKcnZ" target="_blank" rel="noopener">Disney+ <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2019" data-search="penn state behrend speaker series madden opening october">
+      <span class="year mono">2019</span>
+      <span class="badge">Speaker series<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Penn State Behrend Speaker Series</h4>
+        <div class="credit"><b>Opening speaker</b> · October 1, 2019</div>
+        <p class="note">First voice of the university's speaker year. A quiet honor that reads bigger in context.</p>
+      </div>
+      <div class="watch"><a href="https://behrend.psu.edu/story/44916/2019/09/24/madden-nfl-game-designer-open-penn-state-behrends-speaker-series" target="_blank" rel="noopener">Penn State notice <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2018 -->
+    <div class="entry" data-cat="screen" data-year="2018" data-search="nickelodeon black history month gordon bellamy short profile role model">
+      <span class="year mono">2018</span>
+      <span class="badge">Short film<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Nickelodeon Black History Month: Gordon Bellamy</h4>
+        <div class="credit">Short profile · c. 2017 to 2018</div>
+        <p class="note">Nickelodeon's BHM featurette. Reads short but the audience is kids and families, and it resurfaces every February.</p>
+      </div>
+      <div class="watch"><a href="https://www.nick.com/video-clips/uoqhv0/black-history-month-gordon-bellamy" target="_blank" rel="noopener">Nickelodeon <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <div class="entry" data-cat="stage" data-year="2018" data-search="gaming for everyone lgbtqia xbox gdc fireside microsoft learn m rawlings clark ly">
+      <span class="year mono">2018</span>
+      <span class="badge">Fireside<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Gaming for Everyone: LGBTQIA in Gaming</h4>
+        <div class="credit">Xbox fireside · GDC 2018 · Hosted by <b>M Rawlings</b> and <b>Clark Ly</b></div>
+        <p class="note">One of the strongest single long-form interviews outside the documentaries. Free to watch on Microsoft Learn.</p>
+      </div>
+      <div class="watch"><a href="https://learn.microsoft.com/en-us/shows/level-up/gaming-for-everyone-lgbtqia-in-gaming-gordon-bellamy-fireside-chat" target="_blank" rel="noopener">Microsoft Learn <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2017 -->
+    <div class="entry" data-cat="mic" data-year="2017" data-search="playmakers podcast four pillars game biz success episode 11">
+      <span class="year mono">2017</span>
+      <span class="badge">Podcast<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Playmakers Podcast: <em>The 4 Pillars of Game Biz Success</em></h4>
+        <div class="credit">Episode 11 · 2017</div>
+        <p class="note">The clearest early statement of his four-pillars framework. Community, player customization, monetization, design. Still the framework he teaches at USC.</p>
+      </div>
+      <div class="watch"><a href="https://www.playmakerspodcast.com/episodes/5" target="_blank" rel="noopener">Episode <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2016 -->
+    <div class="entry" data-cat="stage" data-year="2016" data-search="gdc launching students well incubators panel post graduation">
+      <span class="year mono">2016</span>
+      <span class="badge">GDC panel<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Launching Students Well: A Panel About Incubators</h4>
+        <div class="credit">GDC 2016</div>
+        <p class="note">The talent-pipeline thread you can trace forward all the way to Directory 8/7 and the CYSTEM board. Same argument, ten years earlier.</p>
+      </div>
+      <div class="watch"><a href="https://www.gdcvault.com/play/1023123/Launching-Students-Well-A-Panel" target="_blank" rel="noopener">GDC Vault <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2016 emcee -->
+    <div class="entry" data-cat="stage" data-year="2016" data-search="gamesbeat university emcee 2016 livestream announcement talks">
+      <span class="year mono">2016</span>
+      <span class="badge">Emcee<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">GamesBeat University 2016</h4>
+        <div class="credit">Announced emcee · Livestreamed talks</div>
+        <p class="note">Playing host, not talent. Different muscle, and part of why he's remembered as reliable to invite.</p>
+      </div>
+      <div class="watch"><span class="none">Archive status unclear</span></div>
+    </div>
+
+    <!-- 2012 -->
+    <div class="entry" data-cat="stage" data-year="2012" data-search="microsoft imagine cup filmed interview igda executive director">
+      <span class="year mono">2012</span>
+      <span class="badge">Interview<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Microsoft Imagine Cup interview</h4>
+        <div class="credit">2012 · Filmed on-camera interview</div>
+        <p class="note">Recorded during his IGDA Executive Director run. Useful as a marker of that chapter.</p>
+      </div>
+      <div class="watch"><a href="https://www.youtube.com/watch?v=b1u9lWxL3OQ" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- 2011 -->
+    <div class="entry" data-cat="stage" data-year="2011" data-search="changing the game becker college honorary chair moderator joan ganz cooney center">
+      <span class="year mono">2011</span>
+      <span class="badge">Onstage<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title">Changing the Game (Becker College)</h4>
+        <div class="credit"><b>Honorary chair and moderator</b> · Fall 2011</div>
+        <p class="note">Convened by the Joan Ganz Cooney Center. A signal that his ed-and-industry lane was already forming.</p>
+      </div>
+      <div class="watch"><a href="https://joanganzcooneycenter.org/2011/08/24/changing-the-game-at-becker-college-september-14-2011/" target="_blank" rel="noopener">Cooney Center notice <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+
+    <!-- game credits -->
+    <div class="entry" data-cat="game" data-year="1994" data-search="madden nfl 95 ea sports assistant producer designer rookie of the year black player representation">
+      <span class="year mono">1994</span>
+      <span class="badge">Game credit<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>Madden NFL 95</em></h4>
+        <div class="credit"><b>Assistant Producer / Game Designer</b> · EA Sports · EA "Rookie of the Year"</div>
+        <p class="note">First cover with Black players (Erik Williams and Karl Wilson). The game that started the representation arc every documentary above returns to.</p>
+      </div>
+      <div class="watch"><span class="none">MobyGames / IMDb</span></div>
+    </div>
+
+    <div class="entry" data-cat="game" data-year="1995" data-search="madden nfl 96 ea sports designer associate producer">
+      <span class="year mono">1995</span>
+      <span class="badge">Game credit<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>Madden NFL 96</em></h4>
+        <div class="credit"><b>Game Designer / Associate Producer</b> · EA Sports</div>
+        <p class="note">Follow-through year at EA before the Z-AXIS / Activision chapter.</p>
+      </div>
+      <div class="watch"><span class="none">MobyGames / IMDb</span></div>
+    </div>
+
+    <div class="entry" data-cat="game" data-year="1993" data-search="fifa international soccer sega genesis original tester ea gordio belamini spain">
+      <span class="year mono">1993</span>
+      <span class="badge">Game credit<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>FIFA International Soccer</em></h4>
+        <div class="credit">EA · Tester on the original build · Appears in-game as <b>Gordio Belamini</b> on Spain</div>
+        <p class="note">He is a player character in the very first FIFA. The through-line to the USMNT site's Belamini '26 cabinet.</p>
+      </div>
+      <div class="watch"><span class="none">Game archive</span></div>
+    </div>
+
+    <div class="entry" data-cat="game" data-year="1997" data-search="three lions alexi lalas international soccer bmg interactive rockstar games">
+      <span class="year mono">1997</span>
+      <span class="badge">Game credit<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>Three Lions</em> and <em>Alexi Lalas International Soccer</em></h4>
+        <div class="credit">BMG Interactive · The team that became <b>Rockstar Games</b></div>
+        <p class="note">Working with the BMG group before it became Rockstar is part of the lineage he rarely leads with.</p>
+      </div>
+      <div class="watch"><span class="none">Game archive</span></div>
+    </div>
+
+    <div class="entry" data-cat="game" data-year="2005" data-search="game head spike tv geoff keighley gaming show misc crew">
+      <span class="year mono">2005</span>
+      <span class="badge">Game credit<svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg></span>
+      <div class="body">
+        <h4 class="title"><em>Game Head</em> (Spike TV)</h4>
+        <div class="credit">Miscellaneous crew · With <b>Geoff Keighley</b></div>
+        <p class="note">The early cable-TV video-game show that became GameTrailers TV. On-camera credit; consulting role too.</p>
+      </div>
+      <div class="watch"><span class="none">IMDb tt0493090</span></div>
+    </div>
+
+  </div><!-- /records -->
+
+  <div class="empty" id="empty">Nothing matches those filters. Try clearing the search.</div>
+</section>
+
+<!-- ================= GAME SHOWS BAND ================= -->
+<section class="wrap">
+  <div class="mast">
+    <span class="num">§ 03 · The other channel</span>
+    <h2>He has also been a <em>contestant</em>.</h2>
+    <p class="sub">Nine game shows in fourteen years. Won three. Lost one for six hundred thousand dollars in front of Ryan Seacrest.</p>
+  </div>
+
+  <div class="gameband">
+    <div class="inner">
+      <div>
+        <div class="stamp">Companion site</div>
+        <h3><em>The Tape Log</em></h3>
+        <p>A separate site, still hosted by Darby, dedicated to the game show record. The Russian Roulette Killer Questions, the Taboo cards, and the Million Dollar Mind Game money ladder are playable inside it. He tweeted every question live from his couch as the Mind Game aired in 2011. After you answer, you see what he posted at that dollar figure.</p>
+        <a class="cta" href="https://gordonusc.github.io/tape-log/">Play the Tape Log <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="counts" aria-label="Game shows tally">
+        <div class="cbox"><span class="k">Shows</span><span class="v">9</span></div>
+        <div class="cbox w"><span class="k">Won</span><span class="v">3</span></div>
+        <div class="cbox l"><span class="k">Lost</span><span class="v">6</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AWARDS ================= -->
+<section class="wrap">
+  <div class="mast">
+    <span class="num">§ 04 · The awards</span>
+    <h2>Two that <em>matter</em>.</h2>
+    <p class="sub">Small numbers, big meaning. Both from bodies whose whole point is to name the people the field trusts.</p>
+  </div>
+
+  <div class="awards">
+    <div class="award">
+      <div class="stamp">2020 · Games for Change</div>
+      <h3>Vanguard Award for Leadership</h3>
+      <div class="meta">Presented at the Games for Change Festival</div>
+      <p>Peer honor from the DEI-and-social-impact body of the field. Gordon in his acceptance: "The work of games is the work of communities. Our contributions are additive to the nexus of ideas, explorations, and discourse which have defined Games for Change for the past seventeen years."</p>
+    </div>
+    <div class="award">
+      <div class="stamp">Pre-2019 · IGDA Black in Games</div>
+      <h3>Jerry Lawson honor</h3>
+      <div class="meta">From <b>IGDA Black in Games</b>, before the 2019 restructure</div>
+      <p>Named for Jerry Lawson, the Fairchild Channel F architect. Sometimes confused in the record with the IGDA Foundation's later annual Lawson Award. Different bodies, different years. Cierra McDonald was the inaugural recipient of the Foundation's version, in 2019.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARGINALIA ================= -->
+<section class="wrap wrap--tight">
+  <div class="mast">
+    <span class="num">§ 05 · The marginalia</span>
+    <h2>Three items in the <em>margins</em>.</h2>
+    <p class="sub">Not exactly public appearances, but part of the record if you are looking closely.</p>
+  </div>
+
+  <div class="marginalia">
+    <div class="marg">
+      <div class="stamp">Six Feet Under · HBO · S3E3 · 2003</div>
+      <h4>The walk-on he bought at Outfest</h4>
+      <p>The Russian Roulette winnings bought a walk-on role at an Outfest charity auction. He plays a student in Claire's art class. A trapdoor on cable television, to a queer film festival, to HBO.</p>
+    </div>
+    <div class="marg">
+      <div class="stamp">Cooking with Kay · Producer · 2007</div>
+      <h4>Joe's film, Gordon's IMDb line</h4>
+      <p>The unexplained 2007 producer credit on his IMDb headline is his husband Joe Heally's movie. Five festivals in its first year. Not a Gordon-fronted appearance, but part of why his filmography reads oddly if you don't know the household.</p>
+    </div>
+    <div class="marg">
+      <div class="stamp">Speed Racer · Family film · 2022</div>
+      <h4>Joe's 60th birthday tribute video</h4>
+      <p>Brennan Murphy cut this for Joe's 60th on February 24, 2022. Gordon and Joe both on camera. "We love you, Speed Racer" is the line their son used, and it stuck. A private-facing artifact, publicly hosted.</p>
+    </div>
+    <div class="marg">
+      <div class="stamp">USC · Since 2021</div>
+      <h4>Anatomy of a Game and the classroom archive</h4>
+      <p>The USC teaching record is its own body of appearances. Anatomy of a Game (2020) is the flagship, and a decade of guest lectures, ethics symposia, and student panels sit around it. Some are on YouTube. Most are inside SCA.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PULLQUOTES ================= -->
+<section class="wrap">
+  <div class="mast">
+    <span class="num">§ 06 · In his own words</span>
+    <h2>What he actually <em>says</em>.</h2>
+    <p class="sub">Every quote below is sourced. Nothing here is paraphrased.</p>
+  </div>
+
+  <div class="pulls">
+    <blockquote>
+      <p>"Games are a language that is shared everywhere in the world."</p>
+      <cite>USC Today, Elisa Huang, March 16, 2021</cite>
+    </blockquote>
+    <blockquote>
+      <p>"For marginalized people, a lot of energy is devoted to justifying your existence in spaces, so when you see yourself placed as default, it has real meaning."</p>
+      <cite>High Score, Netflix, This Is War, 2020</cite>
+    </blockquote>
+    <blockquote>
+      <p>"It's hard to be something if you can't see it. As I tell my students, many of the roles they'll have probably don't exist at the moment. All you can do is prepare to be the best version of yourself."</p>
+      <cite>St. Paul's School alumni spotlight (class of '88)</cite>
+    </blockquote>
+    <blockquote>
+      <p>"What I wanted was Maddens for everybody. How many ways can we have everyone at the table?"</p>
+      <cite>St. Paul's School alumni spotlight</cite>
+    </blockquote>
+    <blockquote>
+      <p>"I just remembered something. I also was the first person to put the Barcelona Dragons in Madden. It was me. I used to love European football."</p>
+      <cite>Gamereactor, SDCC Málaga, November 8, 2025</cite>
+    </blockquote>
+    <blockquote>
+      <p>"The Midwest has always been a quiet powerhouse in game development, where creativity, collaboration, and perseverance converge to shape the industry in profound ways."</p>
+      <cite>MDEV 2024 keynote, Madison WI, November 7, 2024</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Method</h4>
+        <p>Every entry on this page is checked against a named publication, an official schedule, or a hosted recording. Where a date is uncertain, only the year is given. Where a recording is not publicly available, the entry says so. Nothing on this page is paraphrased from memory.</p>
+        <p>The <em>Game Show</em> chapter of his career lives on <a href="https://gordonusc.github.io/tape-log/">its own site</a>. That is where the playable Killer Questions, the Taboo cards, and the money ladder are. It is a companion to this record, not a subset.</p>
+        <p>The counts at the top of the page are conservative floors. His teaching, mentoring, and undocumented industry room-work are not counted here; they are their own record.</p>
+      </div>
+      <div>
+        <h4>Related</h4>
+        <ul>
+          <li><b>The Tape Log</b> · <a href="https://gordonusc.github.io/tape-log/">gordonusc.github.io/tape-log</a></li>
+          <li><b>His USMNT year</b> · <a href="https://gordonusc.github.io/usmnt-2026-personal/">usmnt-2026-personal</a></li>
+          <li><b>Foster at 55</b> · <a href="https://gordonusc.github.io/foster-at-55/">foster-at-55</a></li>
+          <li><b>His teaching, ethics, and games writing</b> · USC School of Cinematic Arts</li>
+        </ul>
+      </div>
+    </div>
+    <div class="colophon">
+      Compiled by Darby for Gordon Bellamy, August 13, 2026. Sourced. Dark on purpose.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var chips = document.querySelectorAll(".chip");
+  var entries = document.querySelectorAll(".entry");
+  var input = document.getElementById("q");
+  var empty = document.getElementById("empty");
+  var current = "all";
+
+  function apply(){
+    var q = (input.value||"").trim().toLowerCase();
+    var shown = 0;
+    entries.forEach(function(e){
+      var cat = e.getAttribute("data-cat");
+      var hay = (e.getAttribute("data-search")||"") + " " + e.textContent.toLowerCase();
+      var catOk = (current === "all") || (cat === current);
+      var qOk = !q || hay.indexOf(q) >= 0;
+      var show = catOk && qOk;
+      e.classList.toggle("hidden", !show);
+      if(show) shown++;
+    });
+    empty.style.display = shown === 0 ? "block" : "none";
+  }
+
+  chips.forEach(function(c){
+    c.addEventListener("click", function(){
+      chips.forEach(function(x){ x.setAttribute("aria-pressed", x===c ? "true" : "false"); });
+      current = c.getAttribute("data-filter");
+      apply();
+    });
+  });
+
+  var t;
+  input.addEventListener("input", function(){
+    clearTimeout(t);
+    t = setTimeout(apply, 90);
+  });
+
+  /* Update the "All" chip count with actual number of entries in DOM */
+  var total = entries.length;
+  var allChip = document.querySelector('.chip[data-filter="all"] .n');
+  if(allChip) allChip.textContent = "(" + total + ")";
+
+  /* Update per-category chip counts from DOM (matches reality even if the copy above is stale) */
+  var buckets = {screen:0, stage:0, mic:0, print:0, game:0, personal:0};
+  entries.forEach(function(e){
+    var c = e.getAttribute("data-cat");
+    if(buckets.hasOwnProperty(c)) buckets[c]++;
+  });
+  Object.keys(buckets).forEach(function(k){
+    var chip = document.querySelector('.chip[data-filter="'+k+'"] .n');
+    if(chip) chip.textContent = "(" + buckets[k] + ")";
+  });
+
+  /* Update the tally at the top from what's actually on the page */
+  var totalTile = document.querySelector('.tally .tc:nth-child(1) .v');
+  if(totalTile) totalTile.textContent = total;
+  var docTile = document.querySelector('.tally .tc:nth-child(3) .v');
+  if(docTile) docTile.textContent = buckets.screen;
+  var stageTile = document.querySelector('.tally .tc:nth-child(4) .v');
+  if(stageTile) stageTile.textContent = buckets.stage;
+  var micTile = document.querySelector('.tally .tc:nth-child(5) .v');
+  if(micTile) micTile.textContent = buckets.mic;
+
+})();
+</script>
+</body>
+</html>
