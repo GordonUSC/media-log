@@ -148,6 +148,12 @@ blockquote cite{font-style:normal;font-size:.71rem;color:var(--dim);margin-top:a
   border-radius:3px;background:var(--panel);padding:clamp(20px,3vw,28px);display:grid;gap:10px;max-width:var(--measure)}
 .cross h3{font-weight:600;font-size:1.2rem}
 .cross a{color:var(--stage);text-underline-offset:3px}
+.mapgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;
+  margin-top:clamp(24px,3.5vw,34px)}
+.mapgrid a{display:flex;align-items:center;min-height:88px;padding:18px 22px;border-radius:4px;
+  background:var(--panel);box-shadow:inset 0 0 0 1px var(--rule);text-decoration:none;
+  font-size:1.02rem;line-height:1.3;transition:box-shadow .15s,color .15s}
+.mapgrid a:hover{box-shadow:inset 0 0 0 2px var(--stage);color:var(--stage)}
 
 footer{padding:clamp(38px,6vw,66px) 0 clamp(52px,8vw,86px);color:var(--dim);font-size:.85rem;border-top:1px solid var(--rule)}
 footer .rows{display:grid;gap:10px;max-width:var(--measure)}
@@ -164,7 +170,7 @@ footer b{color:var(--ink2);font-weight:600}
 
 <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
 
-<header class="top wrap">
+<header class="top wrap" id="top">
   <div class="eyebrow"><i></i> On the record since 1993</div>
   <h1>He is not a talking head.<br><em>He is a room.</em></h1>
   <p class="thesis">Gordon Bellamy has 50 documented appearances across thirty three years. People assume the story is the documentaries. <b>It is not.</b> Twenty eight of the fifty are him on a stage, in front of a room, with a microphone. The Netflix work is real and it travels, but it is seven entries. This page shows the actual shape of it.</p>
@@ -273,6 +279,20 @@ footer b{color:var(--ink2);font-weight:600}
   </div>
 </section>
 </main>
+
+<section class="wrap" id="sitemap">
+  <span class="rnum">Site map</span>
+  <h2>Everything on this site</h2>
+  <p class="sub">A flat list of every destination, with no dropdowns. Requested by Joey, who navigates by eye tracking, and useful for everyone.</p>
+  <nav class="mapgrid" aria-label="Site map">
+    <a href="#top">The Record, top of page</a>
+    <a href="#record">The index, all 50 entries</a>
+    <a href="./eyes.html">The eye-gaze version of this page</a>
+    <a href="https://gordonusc.github.io/tape-log/">The Tape Log, playable game shows</a>
+    <a href="https://gordonusc.github.io/tape-log/dossier.html">The written game show record</a>
+    <a href="https://github.com/GordonUSC/media-log">Source code for this page</a>
+  </nav>
+</section>
 
 <footer class="wrap">
   <div class="rows">

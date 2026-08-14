@@ -6,7 +6,8 @@
    EYE-GAZE VERSION.
    Built for a gaze pointer with dwell selection. The rules that shaped it:
    1. Targets are huge. Gaze pointing obeys Fitts's law badly; nothing here is
-      smaller than 88px on its shortest side.
+      smaller than 104px on its shortest side. Joey: "the biggest problem I run
+      into is really small hit boxes."
    2. Targets are far apart. 28px minimum gutters so a drifting fixation does
       not land on a neighbour.
    3. NOTHING happens on hover. Gaze crosses everything on its way somewhere,
@@ -45,7 +46,7 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 
 /* ---------- top bar: mode targets ---------- */
 .bar{display:flex;flex-wrap:wrap;gap:var(--gap)}
-.t{position:relative;min-height:88px;min-width:150px;flex:1 1 150px;border-radius:14px;
+.t{position:relative;min-height:104px;min-width:168px;flex:1 1 150px;border-radius:14px;
   background:var(--panel);box-shadow:inset 0 0 0 2px var(--rule);
   display:grid;place-items:center;text-align:center;padding:14px 18px;
   font-size:19px;line-height:1.2;letter-spacing:.01em;overflow:hidden;
@@ -77,7 +78,7 @@ h1{margin:0;font-size:clamp(28px,3.6vw,46px);line-height:1.1;font-weight:700;let
 
 /* ---------- bottom: navigation targets ---------- */
 .nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--gap)}
-.t.big{min-height:112px;font-size:23px;font-weight:600}
+.t.big{min-height:128px;font-size:24px;font-weight:600}
 .t.big .arrow{font-size:30px;display:block;margin-bottom:2px}
 
 /* ---------- settings sheet ---------- */
@@ -92,14 +93,23 @@ h1{margin:0;font-size:clamp(28px,3.6vw,46px);line-height:1.1;font-weight:700;let
 .skip:focus{left:16px;top:16px;z-index:99;background:var(--panel2);padding:14px 20px;border-radius:10px}
 /* short landscape screens (a 768px-tall tablet is the classic tracker rig):
    tighten the chrome, never the targets below the 88px floor. */
-@media(min-width:900px) and (max-height:820px){
-  :root{--gap:20px}
-  .t{min-height:88px;padding:10px 14px;font-size:18px}
-  .t.big{min-height:92px;font-size:20px}
+@media(min-width:900px) and (max-height:980px){
+  :root{--gap:18px}
+  .t{min-height:96px;padding:10px 14px;font-size:18px}
+  .t.big{min-height:100px;font-size:19px}
   .t.big .arrow{font-size:24px}
   .stage{padding:20px 24px;gap:11px}
   h1{font-size:clamp(26px,3vw,36px)}
   .meta{font-size:20px} .note{font-size:19px;line-height:1.45}
+}
+/* the tightest supported landscape rig */
+@media(min-width:900px) and (max-height:800px){
+  :root{--gap:14px}
+  .t{min-height:90px;font-size:17px} .t.big{min-height:92px;font-size:18px}
+  .t .lab b{font-size:13px;margin-top:3px}
+  .stage{padding:16px 20px;gap:9px}
+  h1{font-size:clamp(24px,2.6vw,30px)} .meta{font-size:18px} .note{font-size:17px;line-height:1.4}
+  .count{font-size:15px} .kind{font-size:15px;padding:7px 12px} .yr{font-size:24px}
 }
 @media (prefers-reduced-motion:reduce){.t .fill{transition:none}}
 </style>
@@ -122,7 +132,17 @@ h1{margin:0;font-size:clamp(28px,3.6vw,46px);line-height:1.1;font-weight:700;let
     <button class="t big" data-act="next"><span class="fill"></span><span class="lab"><span class="arrow">→</span>Next</span></button>
     <button class="t big" data-act="details"><span class="fill"></span><span class="lab" id="detlab">Why it matters</span></button>
     <button class="t big" data-act="open"><span class="fill"></span><span class="lab">Open source</span></button>
+    <button class="t big" data-act="map"><span class="fill"></span><span class="lab">Site map</span></button>
     <button class="t big" data-act="exit"><span class="fill"></span><span class="lab">Normal version</span></button>
+  </div>
+</div>
+
+<div class="sheet" id="mapsheet" role="dialog" aria-modal="true" aria-label="Site map">
+  <h2>Site map</h2>
+  <p>Every place you can go from here. No dropdowns anywhere on this page.</p>
+  <div class="grid" id="mapgrid"></div>
+  <div class="grid">
+    <button class="t big" data-act="closemap"><span class="fill"></span><span class="lab">Back to the record</span></button>
   </div>
 </div>
 
@@ -130,7 +150,7 @@ h1{margin:0;font-size:clamp(28px,3.6vw,46px);line-height:1.1;font-weight:700;let
   <h2>Settings</h2>
   <p>Dwell means: rest your gaze on a button and it activates on its own after the time you choose. The button fills up so you can see it coming. Look away before it fills and nothing happens.</p>
   <div class="grid" id="dwellopts"></div>
-  <p class="hint">Dwell is off by default, because if you use a tracker that already sends clicks you do not want two systems firing at once. Everything here also works with a mouse, a touch screen, the Tab and arrow keys, or a switch.</p>
+  <p class="hint">Dwell is off by default, because a TD Pilot with AssistiveTouch already sends its own taps and you do not want two systems firing at once. Turn it on only if your device does not click for you. 0.6 seconds is the navigation speed Joey uses. Everything here also works with a mouse, a touch screen, the Tab and arrow keys, or a switch.</p>
   <div class="grid">
     <button class="t big" data-act="closesheet"><span class="fill"></span><span class="lab">Done</span></button>
   </div>
@@ -143,7 +163,7 @@ const ENTRIES=[{"year":"2026","cat":"stage","badge":"KEYNOTE","title":"CEE Congr
 var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 var LABEL={stage:"On a stage",screen:"On camera",else:"In print, on a mic, in credits"};
 var state={filter:"all",i:0,dwell:0,face:"front"};
-var card=document.getElementById("card"), sheet=document.getElementById("sheet");
+var card=document.getElementById("card"), sheet=document.getElementById("sheet"), mapsheet=document.getElementById("mapsheet");
 
 function rows(){
   return ENTRIES.filter(function(e){ return state.filter==="all" || e.series===state.filter; });
@@ -199,6 +219,14 @@ function act(name,val,node){
     if(e && e.url) window.open(e.url,"_blank","noopener");
   }
   else if(name==="settings"){ sheet.classList.add("on"); }
+  else if(name==="map"){ mapsheet.classList.add("on"); }
+  else if(name==="closemap"){ mapsheet.classList.remove("on"); }
+  else if(name==="jumpyear"){
+    var list=rows();
+    for(var k=0;k<list.length;k++){ if(list[k].year===val){ state.i=k; break; } }
+    state.face="front"; mapsheet.classList.remove("on"); draw();
+  }
+  else if(name==="goto"){ window.open(val,"_blank","noopener"); }
   else if(name==="closesheet"){ sheet.classList.remove("on"); }
   else if(name==="setdwell"){
     state.dwell=+val;
@@ -247,7 +275,7 @@ function wire(node){
 }
 
 /* dwell options */
-var opts=[[0,"Off","clicks only"],[900,"0.9 sec","quick"],[1400,"1.4 sec","steady"],[2200,"2.2 sec","relaxed"]];
+var opts=[[0,"Off","your device clicks"],[600,"0.6 sec","Joey's setting"],[900,"0.9 sec","quick"],[1400,"1.4 sec","steady"],[2200,"2.2 sec","relaxed"]];
 var wrap=document.getElementById("dwellopts");
 opts.forEach(function(o){
   var b=document.createElement("button");
@@ -263,9 +291,29 @@ document.querySelectorAll(".t").forEach(wire);
 document.addEventListener("keydown",function(ev){
   if(ev.key==="ArrowRight"||ev.key==="PageDown"){ act("next"); ev.preventDefault(); }
   if(ev.key==="ArrowLeft"||ev.key==="PageUp"){ act("prev"); ev.preventDefault(); }
-  if(ev.key==="Escape"){ sheet.classList.remove("on"); }
+  if(ev.key==="Escape"){ sheet.classList.remove("on"); mapsheet.classList.remove("on"); }
 });
 
+(function buildMap(){
+  var g=document.getElementById("mapgrid");
+  var years=[]; ENTRIES.forEach(function(e){ if(years.indexOf(e.year)<0) years.push(e.year); });
+  years.sort(function(a,b){ return b-a; });
+  years.forEach(function(y){
+    var n=ENTRIES.filter(function(e){return e.year===y;}).length;
+    var b=document.createElement("button");
+    b.className="t big"; b.dataset.act="jumpyear"; b.dataset.v=y;
+    b.innerHTML='<span class="fill"></span><span class="lab">'+y+'<b>'+n+(n===1?" entry":" entries")+'</b></span>';
+    g.appendChild(b);
+  });
+  [["The Tape Log, playable","https://gordonusc.github.io/tape-log/"],
+   ["The written game show record","https://gordonusc.github.io/tape-log/dossier.html"]].forEach(function(d){
+    var b=document.createElement("button");
+    b.className="t big"; b.dataset.act="goto"; b.dataset.v=d[1];
+    b.innerHTML='<span class="fill"></span><span class="lab">'+d[0]+'<b>opens a new tab</b></span>';
+    g.appendChild(b);
+  });
+  document.querySelectorAll("#mapsheet .t").forEach(wire);
+})();
 counts(); draw();
 })();
 </script>
