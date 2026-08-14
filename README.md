@@ -11,6 +11,7 @@ The finding the page is built on: **28 of the 50 are him on a stage.** Only 7 ar
 ## Two versions
 
 - **[The Record](https://gordonusc.github.io/media-log/)** — the default. Career-shape chart, marquee pieces, full filterable index.
+- **[Hello Joey](https://gordonusc.github.io/media-log/hello.html)** — a welcome you read with your eyes. The spotlight follows your gaze and the words wake as it passes. Zero clicks.
 - **[The eye-gaze version](https://gordonusc.github.io/media-log/eyes.html)** — built for navigating by eye tracking or a switch. Every target is at least 88px on its shortest side with 28px gutters, nothing activates on hover, one card at a time instead of scrolling, and an optional dwell timer you set yourself (off by default).
 
 ## Companion site
