@@ -1,28 +1,25 @@
-# The Record
+# Gordon Bellamy · Speaking, Board & Advisory
 
-Where Gordon Bellamy has appeared, in his own footage and in other people's frames.
+Current GitHub Pages address: https://gordonusc.github.io/media-log/
 
-**Live:** https://gordonusc.github.io/media-log/
+This revision makes paid speaking and board/advisory inquiries the primary journeys while retaining a searchable media record and the original accessible archive destinations.
 
-Three decades across film, television, panels, podcasts and print. **50 entries**, every one checked against a named source.
+Static site: index.html, site.css, site.js and media-data.js. No package install or build is needed. Serve the repository with a local HTTP server. No backend or third-party analytics; inquiry fields remain in page memory. YouTube is loaded only on click.
 
-The finding the page is built on: **28 of the 50 are him on a stage.** Only 7 are on camera. He is not a documentary subject who occasionally speaks, he is a speaker who occasionally gets filmed.
+## Pages
+- index.html: current proposed speaking/board experience
+- archive.html: original August 2026 main page, retained as history
+- eyes.html: existing eye-gaze archive
+- hello.html: existing welcome for Joey
 
-## Two versions
+The 49-record collection merges one duplicate, corrects MDEV's event year and the Digital Civics URL, and labels records without public references. See REVIEW.md for the critique, source evidence, remaining opportunities, and validation limits.
 
-- **[The Record](https://gordonusc.github.io/media-log/)** — the default. Career-shape chart, marquee pieces, full filterable index.
-- **[Hello Joey](https://gordonusc.github.io/media-log/hello.html)** — a welcome you read with your eyes. The spotlight follows your gaze and the words wake as it passes. Zero clicks.
-- **[The eye-gaze version](https://gordonusc.github.io/media-log/eyes.html)** — built for navigating by eye tracking or a switch. Every target is at least 88px on its shortest side with 28px gutters, nothing activates on hover, one card at a time instead of scrolling, and an optional dwell timer you set yourself (off by default).
+## Local checks
+JavaScript syntax: node --check site.js
+Interaction test: node tests/interface.cjs (uses the existing isolated jsdom runtime at /tmp/gordtopia-engine-test; this dependency is not shipped to visitors).
 
-## Companion site
-
-The game show half of the record is its own thing, and it is playable:
-**https://gordonusc.github.io/tape-log/**
-
-Nine television game shows between 2001 and 2015, three of them won, with his real questions pulled off the surviving tapes.
-
-## Method
-
-Three source layers, in order of weight: surviving tape checked frame by frame; network graphics and published episode guides; and Gordon's own dated posts and messages. Where only his word exists, the page says so. No viewership estimates appear anywhere, because measured numbers for his segments do not exist.
-
-Built by Darby for Gordon Bellamy, August 2026.
+## Assets
+USC portrait: https://cinema.usc.edu/images/directory/66A6FD4F_DC09_4CA7_42C07DBE5C0971B9.jpg
+Additional existing public headshot: https://www.kepplerspeakers.com/bellamy-g.jpg
+UConn video thumbnail: https://i.ytimg.com/vi/Lb8ZcOXPQ-I/hqdefault.jpg
+Clash Display and Switzer fonts are retained from the previously published page's embedded assets. No generated likeness or testimonial is used.
