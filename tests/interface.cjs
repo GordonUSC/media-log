@@ -3,6 +3,7 @@ const {JSDOM}=require('/tmp/gordtopia-engine-test/node_modules/jsdom');
 const root=path.join(__dirname,'..');const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const dom=new JSDOM(html,{url:'http://localhost/media-log/',runScripts:'outside-only',pretendToBeVisual:true});const w=dom.window,d=w.document;let copied='',printed=0;
 Object.defineProperty(w.navigator,'clipboard',{value:{writeText:async t=>{copied=t}}});w.print=()=>printed++;
+w.HTMLElement.prototype.scrollIntoView=function(){};
 for(const f of ['media-data.js','site.js'])w.eval(fs.readFileSync(path.join(root,f),'utf8'));
 assert.equal(w.MEDIA_ENTRIES.length,49);assert.equal(d.querySelectorAll('.record-item').length,8);
 d.querySelector('[data-filter="screen"]').click();assert.ok([...d.querySelectorAll('.record-item h3')].some(x=>x.textContent.includes('High Score')));
@@ -16,4 +17,13 @@ d.querySelector('#copy-brief').click();assert.equal(copied,'My revised brief');d
 d.querySelector('#play-video').click();assert.equal(d.querySelectorAll('iframe').length,1);assert.ok(d.querySelector('iframe').src.startsWith('https://www.youtube-nocookie.com/embed/Lb8ZcOXPQ-I'));
 for(const a of d.querySelectorAll('a[href^="#"]'))assert.ok(d.getElementById(a.getAttribute('href').slice(1)),a.outerHTML);
 assert.equal(d.querySelectorAll('h1').length,2); // includes the generated print introduction
+d.querySelector('#tab-community').click();d.querySelector('#use-topic').click();
+assert.equal(d.querySelector('#inquiry').value,'speaking');
+assert.ok(d.querySelector('#brief-text').value.includes('Give people a reason to return.'));
+assert.ok(d.querySelector('#next-contact').href.includes('kepplerspeakers.com'));
+d.querySelector('#tab-community').dispatchEvent(new w.KeyboardEvent('keydown',{key:'Home',bubbles:true}));
+assert.equal(d.querySelector('#tab-ai').getAttribute('aria-selected'),'true');
+d.querySelector('#use-topic').click();assert.ok(d.querySelector('#brief-text').value.includes('Make AI useful.'));
+assert.ok(!d.querySelector('#brief-text').value.includes('Give people a reason to return.'));
+assert.ok(fs.existsSync(path.join(root,'speaker-kit.html')));
 console.log('PASS: archive filtering, empty state, pagination, keyboard themes, board inquiry routing, editable/copyable draft, print content, video opt-in, and page anchors.');setTimeout(()=>dom.window.close(),0);
