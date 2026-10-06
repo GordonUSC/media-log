@@ -26,3 +26,7 @@ USC portrait: https://cinema.usc.edu/images/directory/66A6FD4F_DC09_4CA7_42C07DB
 Additional existing public headshot: https://www.kepplerspeakers.com/bellamy-g.jpg
 UConn video thumbnail: https://i.ytimg.com/vi/Lb8ZcOXPQ-I/hqdefault.jpg
 Clash Display and Switzer fonts are retained from the previously published page's embedded assets. No generated likeness or testimonial is used.
+
+The record also accepts `year`, drawn from years present in the collection: `?media=screen&year=2020&q=Netflix#record`. Year, category, and text filters combine; “Clear search & filters” resets all three. The embedded UConn video has a “Stop video” control that removes the player, restores its poster, and returns keyboard focus to Play.
+
+Additional DOM checks: `JSDOM_PATH=/absolute/path/to/node_modules/jsdom node tests/year-video.cjs` covers year filtering, navigation recovery, video unloading, and focus return. Actual YouTube playback and clipboard permissions require browser checks.

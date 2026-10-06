@@ -4,7 +4,7 @@ let checks=0;const assert=new Proxy(nativeAssert,{get(target,key){const value=ta
 const root=path.join(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const state={activeElement:null},events={},nodes={};
 function node(){return {value:'',hidden:false,textContent:'',attrs:{},setAttribute(k,v){this.attrs[k]=String(v)},focus(){state.activeElement=this}}}
-for(const id of ['search','record-count','record-list','reset-record','more-records'])nodes['#'+id]=node();
+for(const id of ['search','record-year','record-count','record-list','reset-record','more-records'])nodes['#'+id]=node();
 let rendered=[],markup='';
 Object.defineProperty(nodes['#record-list'],'innerHTML',{get:()=>markup,set:s=>{markup=s;rendered=[...s.matchAll(/<article class="record-item" data-entry="(\d+)">[\s\S]*?<h3 tabindex="-1">([\s\S]*?)<\/h3>[\s\S]*?<details( open)?>/g)].map(m=>({id:m[1],heading:Object.assign(node(),{textContent:m[2]}),open:!!m[3]}))}});
 nodes['#record-list'].querySelectorAll=s=>s==='h3'?rendered.map(r=>r.heading):[];
@@ -22,6 +22,8 @@ search('not-a-real-entry-999999');assert.equal(rendered.length,0);assert.ok(mark
 reset.onclick();assert.equal(q.value,'');assert.equal(state.activeElement,q);assert.equal(rendered.length,8);assert.equal(reset.hidden,true);assert.equal(context.location.searchParams.has('q'),false);
 filters.find(f=>f.dataset.filter==='screen').onclick();assert.equal(rendered.length,7);assert.equal(more.hidden,true);assert.equal(context.location.searchParams.get('media'),'screen');assert.equal(filters[2].attrs['aria-pressed'],'true');
 reset.onclick();rendered[0].open=true;more.onclick();assert.equal(rendered.length,16);assert.ok(rendered[0].open);assert.equal(state.activeElement,rendered[8].heading);assert.ok(markup.includes('(opens in a new tab)'));
+context.location.hash='about';events.popstate();assert.equal(rendered.length,16);assert.ok(rendered[0].open);
+context.location.hash='record';events.popstate();assert.equal(rendered.length,16);
 for(let i=0;i<5;i++)more.onclick();assert.equal(rendered.length,49);assert.equal(more.hidden,true);assert.equal(more.textContent,'Show 0 more appearances');
 context.location=new URL('http://localhost/?media=screen&q=Netflix');events.popstate();assert.equal(rendered.length,1);assert.ok(rendered[0].heading.textContent.includes('High Score'));
 context.location=new URL('http://localhost/?media=invalid&q=%3Cscript%3E');events.popstate();assert.equal(filters[0].attrs['aria-pressed'],'true');assert.equal(rendered.length,0);assert.equal(markup.includes('<script>'),false);

@@ -8,21 +8,29 @@ topics.ai.outcomes=['Name a real human need before choosing an AI tool.','Define
 let selectedTopic='ai';
 function showTopic(key){selectedTopic=key;const t=topics[key];document.querySelectorAll('[data-topic]').forEach(b=>{const selected=b.dataset.topic===key;b.setAttribute('aria-selected',selected);b.tabIndex=selected?0:-1});$('#topic-panel').setAttribute('aria-labelledby','tab-'+key);$('#topic-for').textContent=t.audience;$('#topic-title').textContent=t.title;$('#topic-description').textContent=t.description;$('#topic-outcomes').innerHTML=t.outcomes.map(x=>'<li>'+escapeHTML(x)+'</li>').join('');$('#topic-evidence').textContent=t.evidence;$('#topic-evidence').href=t.url}
 const tabs=[...document.querySelectorAll('[data-topic]')];tabs.forEach((b,i)=>{b.onclick=()=>showTopic(b.dataset.topic);b.onkeydown=e=>{if(!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Home','End'].includes(e.key))return;e.preventDefault();const n=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(['ArrowRight','ArrowDown'].includes(e.key)?1:tabs.length-1))%tabs.length;tabs[n].focus();showTopic(tabs[n].dataset.topic)}});
-$('#play-video').onclick=()=>{const player=$('#video-player');player.hidden=false;player.innerHTML='<iframe title="Gordon Bellamy at UConn: fireside conversation" src="https://www.youtube-nocookie.com/embed/Lb8ZcOXPQ-I?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';$('#play-video').hidden=true;player.querySelector('iframe').focus()};
+$('#play-video').onclick=()=>{const player=$('#video-player');player.hidden=false;player.innerHTML='<iframe title="Gordon Bellamy at UConn: fireside conversation" src="https://www.youtube-nocookie.com/embed/Lb8ZcOXPQ-I?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';$('#play-video').hidden=true;$('#stop-video').hidden=false;player.querySelector('iframe').focus()};
+$('#stop-video').onclick=()=>{const player=$('#video-player');player.replaceChildren();player.hidden=true;$('#stop-video').hidden=true;$('#play-video').hidden=false;$('#play-video').focus()};
 // The record can be bookmarked, including its category and search.
 const validFilters=['all','stage','screen','else'];
-let filter='all',limit=8;
+let filter='all',year='all',limit=8;
 const entries=[...(window.MEDIA_ENTRIES||[])].sort((a,b)=>Number(b.year)-Number(a.year));
+const recordYears=[...new Set(entries.map(e=>String(e.year)))];
+$('#record-year').innerHTML='<option value="all">Every year</option>'+recordYears.map(y=>`<option value="${escapeHTML(y)}">${escapeHTML(y)}</option>`).join('');
 const normalizeSearch=s=>String(s??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘]/g,"'").toLowerCase();
 function readRecordLocation(){
   const params=new URLSearchParams(location.search);
-  filter=validFilters.includes(params.get('media'))?params.get('media'):'all';
-  $('#search').value=params.get('q')||'';
-  limit=8;
+  const nextFilter=validFilters.includes(params.get('media'))?params.get('media'):'all';
+  const nextQuery=params.get('q')||'';
+  const nextYear=recordYears.includes(params.get('year'))?params.get('year'):'all';
+  // Hash-only navigation must preserve entries already revealed with Show more.
+  if(year!==nextYear||filter!==nextFilter||$('#search').value.trim()!==nextQuery.trim())limit=8;
+  filter=nextFilter;year=nextYear;$('#record-year').value=year;
+  $('#search').value=nextQuery;
 }
 function saveRecordLocation(){
   const url=new URL(location.href);
   if(filter==='all')url.searchParams.delete('media');else url.searchParams.set('media',filter);
+  if(year==='all')url.searchParams.delete('year');else url.searchParams.set('year',year);
   const query=$('#search').value.trim();
   if(query)url.searchParams.set('q',query);else url.searchParams.delete('q');
   // Replace rather than adding a browser-history entry for every keystroke.
@@ -31,20 +39,21 @@ function saveRecordLocation(){
 }
 function renderRecord(focusIndex){
   const terms=normalizeSearch($('#search').value.trim()).split(/\s+/).filter(Boolean);
-  const found=entries.filter(e=>(filter==='all'||e.series===filter)&&terms.every(term=>normalizeSearch([e.year,e.title,e.meta,e.search,e.note,e.badge].join(' ')).includes(term)));
+  const found=entries.filter(e=>(filter==='all'||e.series===filter)&&(year==='all'||String(e.year)===year)&&terms.every(term=>normalizeSearch([e.year,e.title,e.meta,e.search,e.note,e.badge].join(' ')).includes(term)));
   const expanded=new Set([...document.querySelectorAll('.record-item details[open]')].map(d=>d.closest('.record-item').dataset.entry));
   $('#record-count').textContent=`${found.length} matching ${found.length===1?'entry':'entries'} · showing ${Math.min(limit,found.length)} of ${found.length}`;
   $('#record-list').innerHTML=found.slice(0,limit).map(e=>`<article class="record-item" data-entry="${entries.indexOf(e)}"><span class="year">${escapeHTML(e.year)}</span><div><h3 tabindex="-1">${escapeHTML(e.title)}</h3><p class="meta">${escapeHTML(e.meta)}</p><details${expanded.has(String(entries.indexOf(e)))?' open':''}><summary>Context<span class="sr-only">: ${escapeHTML(e.title)}</span></summary><p>${escapeHTML(e.note)}</p></details></div><div class="record-source"><span>${escapeHTML(e.status)}</span>${e.url?`<a href="${escapeHTML(e.url)}" target="_blank" rel="noopener" aria-label="Open source for ${escapeHTML(e.title)} (opens in a new tab)">Open source ↗</a>`:''}</div></article>`).join('')||'<p class="empty">No matching entries. Try a title, year, venue, or person, or use “Clear search & filters” to start again.</p>';
   $('#more-records').hidden=limit>=found.length;
   $('#more-records').textContent=`Show ${Math.max(0,Math.min(8,found.length-limit))} more appearances`;
-  $('#reset-record').hidden=!terms.length&&filter==='all';
+  $('#reset-record').hidden=!terms.length&&filter==='all'&&year==='all';
   document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.filter===filter));
   if(Number.isInteger(focusIndex))$('#record-list').querySelectorAll('h3')[focusIndex]?.focus({preventScroll:false});
 }
 function changeRecord(){limit=8;saveRecordLocation();renderRecord()}
 document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;changeRecord()});
 $('#search').oninput=changeRecord;
-$('#reset-record').onclick=()=>{filter='all';$('#search').value='';changeRecord();$('#search').focus()};
+$('#record-year').onchange=()=>{year=$('#record-year').value;changeRecord()};
+$('#reset-record').onclick=()=>{filter='all';year='all';$('#record-year').value='all';$('#search').value='';changeRecord();$('#search').focus()};
 $('#more-records').onclick=()=>{const firstNew=limit;limit+=8;renderRecord(firstNew)};
 window.addEventListener('popstate',()=>{readRecordLocation();renderRecord()});
 readRecordLocation();renderRecord();

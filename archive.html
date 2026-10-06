@@ -366,7 +366,7 @@ function draw(){
   var W=1000, padL=8, padR=8, padB=26, r=7, gap=4;
   var colW=(W-padL-padR)/YEARS.length;
   var H=padB + maxStack*(r*2+gap) + 10;
-  var svg='<svg viewBox="0 0 '+W+' '+H+'" role="group" aria-label="Every appearance from 1993 to 2026, one mark per appearance, coloured by whether it was on a stage, on camera, or in print, on a microphone or in game credits.">';
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" role="group" aria-label="Every appearance from 1993 to 2026, one mark per appearance, colored by whether it was on a stage, on camera, or in print, on a microphone or in game credits.">';
   /* recessive baseline */
   svg+='<line x1="'+padL+'" y1="'+(H-padB+9)+'" x2="'+(W-padR)+'" y2="'+(H-padB+9)+'" stroke="#212838" stroke-width="1"/>';
   YEARS.forEach(function(y,i){

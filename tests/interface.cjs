@@ -26,6 +26,16 @@ assert.equal(d.querySelector('#tab-ai').getAttribute('aria-selected'),'true');
 d.querySelector('#use-topic').click();assert.ok(d.querySelector('#brief-text').value.includes('Make AI useful.'));
 assert.ok(!d.querySelector('#brief-text').value.includes('Give people a reason to return.'));
 assert.ok(fs.existsSync(path.join(root,'speaker-kit.html')));
+// Browser history emits popstate for same-document hash navigation too.
+d.querySelector('#reset-record').click();d.querySelector('#more-records').click();
+d.querySelector('.record-item details').open=true;
+w.history.pushState(null,'','#about');w.dispatchEvent(new w.PopStateEvent('popstate'));
+assert.equal(d.querySelectorAll('.record-item').length,16);
+assert.ok(d.querySelector('.record-item details').open);
+w.history.pushState(null,'','#record');w.dispatchEvent(new w.PopStateEvent('popstate'));
+assert.equal(d.querySelectorAll('.record-item').length,16);
+w.history.pushState(null,'','?media=screen&q=Netflix#record');w.dispatchEvent(new w.PopStateEvent('popstate'));
+assert.equal(d.querySelectorAll('.record-item').length,1);
 // Regression coverage for record discovery, search, recovery, and pagination.
 assert.ok(d.querySelector('nav[aria-label="Main navigation"] a[href="#record"]'));
 d.querySelector('#reset-record').click();
