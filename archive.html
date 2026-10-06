@@ -171,9 +171,23 @@ footer b{color:var(--ink2);font-weight:600}
     @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   }
 }
+
+/* Navigational repairs for the preserved August edition. */
+.archive-nav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-block:14px;border-bottom:1px solid var(--rule);font-size:.85rem}
+.archive-nav a{display:inline-flex;align-items:center;min-height:44px;color:var(--stage);text-underline-offset:4px}
+.archive-notice{padding-top:16px;color:var(--ink2);font-size:.82rem}.archive-notice a{color:var(--stage)}
+.archive-skip{position:absolute;top:-100px;left:18px;background:var(--stage);color:var(--ground);padding:12px;z-index:100}.archive-skip:focus{top:12px}
+.archive-results{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;margin-bottom:16px;font-size:.85rem;color:var(--ink2)}
+#archive-reset{border:1px solid var(--rule);padding:10px 14px;min-height:44px;border-radius:3px;color:var(--stage)}
+#archive-reset[hidden]{display:none}.chip,.lg{min-height:44px}.row .cta{white-space:normal;overflow-wrap:anywhere;min-height:44px;display:inline-flex;align-items:center}
+.mk:focus{stroke:var(--ink);stroke-width:4}.row h4:focus{outline:2px solid var(--stage);outline-offset:4px}#record{scroll-margin-top:12px}.search{min-height:44px}.row h4,.row p{overflow-wrap:anywhere}
+@media(max-width:600px){.tools{position:static}.archive-results{justify-content:flex-start}}
 </style>
 </head>
 <body>
+<a class="archive-skip" href="#record">Skip to the searchable index</a>
+<nav class="archive-nav wrap" aria-label="Archive navigation"><a href="index.html">← Gordon Bellamy · Speaking & advisory</a><a href="index.html#record">Current media record →</a></nav>
+<p class="archive-notice wrap">Original August 2026 edition, preserved as it was written. For corrected entries and source notes, <a href="index.html#record">browse the current media record</a>.</p>
 
 <svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
 
@@ -186,7 +200,7 @@ footer b{color:var(--ink2);font-weight:600}
     <div class="charthead">
       <div>
         <div class="charttitle">Every appearance, 1993 to 2026</div>
-        <div class="chartsub">One mark per appearance. Click a series to filter the index below.</div>
+        <div class="chartsub">One mark per appearance. Filter by series, or select a mark to find its entry. Use arrow keys to move between marks.</div>
       </div>
       <div class="legend" id="legend"></div>
     </div>
@@ -242,7 +256,7 @@ footer b{color:var(--ink2);font-weight:600}
   </div>
 </section>
 
-<section class="wrap">
+<section class="wrap" id="record">
   <span class="rnum">The index</span>
   <h2>All fifty</h2>
   <p class="sub">Filter by where it happened, or search a title, venue or host. Seven of these were found on 13 August 2026 by searching his own Instagram and LinkedIn outbox rather than his name, including a New York gala honour that no prior version of this record contained.</p>
@@ -252,8 +266,9 @@ footer b{color:var(--ink2);font-weight:600}
     <button class="chip" data-f="stage" aria-pressed="false">On a stage <span class="n">28</span></button>
     <button class="chip" data-f="screen" aria-pressed="false">On camera <span class="n">7</span></button>
     <button class="chip" data-f="else" aria-pressed="false">Print, mic and credits <span class="n">15</span></button>
-    <input class="search" id="q" type="search" placeholder="Search title, venue, host" aria-label="Search the record">
+    <input class="search" id="q" type="search" placeholder="Search title, venue, host" aria-label="Search the record" aria-controls="list">
   </div>
+  <div class="archive-results"><p id="archive-count" role="status" aria-live="polite" aria-atomic="true"></p><button type="button" id="archive-reset" hidden>Clear search & filters</button></div>
   <div class="list" id="list"></div>
 </section>
 
@@ -292,6 +307,8 @@ footer b{color:var(--ink2);font-weight:600}
   <h2>Everything on this site</h2>
   <p class="sub">A flat list of every destination, with no dropdowns. Requested by Joey, who navigates by eye tracking, and useful for everyone.</p>
   <nav class="mapgrid" aria-label="Site map">
+    <a href="index.html">Gordon Bellamy, speaking & advisory</a>
+    <a href="index.html#record">The current, corrected media record</a>
     <a href="#top">The Record, top of page</a>
     <a href="#record">The index, all 50 entries</a>
     <a href="./eyes.html">The eye-gaze version of this page</a>
@@ -349,7 +366,7 @@ function draw(){
   var W=1000, padL=8, padR=8, padB=26, r=7, gap=4;
   var colW=(W-padL-padR)/YEARS.length;
   var H=padB + maxStack*(r*2+gap) + 10;
-  var svg='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Every appearance from 1993 to 2026, one mark per appearance, coloured by whether it was on a stage, on camera, or in print, on a microphone or in game credits.">';
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" role="group" aria-label="Every appearance from 1993 to 2026, one mark per appearance, colored by whether it was on a stage, on camera, or in print, on a microphone or in game credits.">';
   /* recessive baseline */
   svg+='<line x1="'+padL+'" y1="'+(H-padB+9)+'" x2="'+(W-padR)+'" y2="'+(H-padB+9)+'" stroke="#212838" stroke-width="1"/>';
   YEARS.forEach(function(y,i){
@@ -367,11 +384,28 @@ function draw(){
   svg+='</svg>';
   var old=plot.querySelector("svg"); if(old) old.remove();
   plot.insertAdjacentHTML("afterbegin",svg);
-  plot.querySelectorAll(".mk").forEach(function(c){
+  var marks=Array.from(plot.querySelectorAll(".mk"));
+  marks.forEach(function(c,i){
+    var entry=ENTRIES[+c.dataset.i];
+    c.setAttribute("role","button");
+    c.setAttribute("tabindex",i===0?"0":"-1");
+    c.setAttribute("aria-label",entry.year+": "+entry.title+". Show this entry.");
+    c.addEventListener("keydown",function(event){
+      if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp","Home","End"].includes(event.key)){
+        event.preventDefault();
+        var next=event.key==="Home"?0:event.key==="End"?marks.length-1:(i+(["ArrowRight","ArrowDown"].includes(event.key)?1:marks.length-1))%marks.length;
+        marks.forEach(function(mark){mark.setAttribute("tabindex","-1");});
+        marks[next].setAttribute("tabindex","0");marks[next].focus();
+      }else if(event.key==="Enter"||event.key===" "){
+        event.preventDefault();c.dispatchEvent(new MouseEvent("click",{bubbles:true}));
+      }else if(event.key==="Escape"){tip.classList.remove("on");}
+    });
+    c.addEventListener("blur",function(){tip.classList.remove("on");});
+    c.addEventListener("focus",function(){c.dispatchEvent(new MouseEvent("mouseenter"));});
     c.style.cursor="pointer";
     c.addEventListener("mouseenter",function(ev){
       var e=ENTRIES[+c.dataset.i];
-      tip.innerHTML='<span class="t">'+e.title+'</span><span class="m">'+(e.meta||e.badge)+'</span>';
+      tip.replaceChildren(el("span","t",e.title),el("span","m",e.meta||e.badge));
       var pr=plot.getBoundingClientRect(), cr=c.getBoundingClientRect();
       tip.style.left=(cr.left-pr.left+cr.width/2)+"px";
       tip.style.top=(cr.top-pr.top)+"px";
@@ -384,7 +418,8 @@ function draw(){
       state.filter=e.series;
       Object.keys(state.series).forEach(function(k){state.series[k]=(k===e.series);});
       syncLegend(); syncChips(); draw(); render();
-      document.getElementById("list").scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
+      var target=document.getElementById("archive-entry-"+c.dataset.i);
+      if(target){target.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});target.querySelector("h4").focus({preventScroll:true});}
     });
   });
 }
@@ -399,28 +434,30 @@ function syncLegend(){
 /* ---------- index ---------- */
 var list=document.getElementById("list");
 function render(){
-  var q=state.q.toLowerCase();
+  var q=state.q.trim().toLowerCase();
   var rows=ENTRIES.filter(function(e){
     if(state.filter!=="all" && e.series!==state.filter) return false;
     if(state.filter==="all" && !state.series[e.series]) return false;
-    if(q && (e.search+" "+e.title+" "+e.meta).toLowerCase().indexOf(q)<0) return false;
+    if(q && (e.year+" "+e.search+" "+e.title+" "+e.meta).toLowerCase().indexOf(q)<0) return false;
     return true;
   });
+  document.getElementById("archive-count").textContent=rows.length+" of "+ENTRIES.length+" archived entries";
+  document.getElementById("archive-reset").hidden=!q && Object.keys(state.series).every(function(k){return state.series[k];});
   list.innerHTML="";
-  if(!rows.length){ list.appendChild(el("p","empty","Nothing matches that. Try a shorter search.")); return; }
+  if(!rows.length){ list.appendChild(el("p","empty","Nothing matches these filters. Clear search & filters to see the full archive.")); return; }
   rows.forEach(function(e){
-    var row=el("div","row "+e.series);
+    var row=el("div","row "+e.series);row.id="archive-entry-"+ENTRIES.indexOf(e);
     row.appendChild(el("span","yr mono",e.year));
     var main=el("div","main");
     if(e.badge) main.appendChild(el("span","badge",e.badge));
-    var h=el("h4"); h.textContent=e.title; main.appendChild(h);
+    var h=el("h4");h.tabIndex=-1;h.textContent=e.title; main.appendChild(h);
     if(e.meta) main.appendChild(el("p","m",e.meta));
     if(e.note) main.appendChild(el("p","n",e.note));
     row.appendChild(main);
     if(e.url){
       var a=document.createElement("a");
       a.className="cta"; a.href=e.url; a.target="_blank"; a.rel="noopener";
-      a.textContent=(e.cta||"Source")+" →";
+      a.textContent=(e.cta||"Source")+" →";a.setAttribute("aria-label",(e.cta||"Source")+": "+e.title+" (opens in a new tab)");
       row.appendChild(a);
     } else {
       row.appendChild(el("span","cta none",e.cta||"No link"));
@@ -442,6 +479,11 @@ document.querySelectorAll(".chip").forEach(function(c){
 });
 document.getElementById("q").addEventListener("input",function(){ state.q=this.value; render(); });
 
+document.getElementById("archive-reset").addEventListener("click",function(){
+  state.q="";state.filter="all";document.getElementById("q").value="";
+  Object.keys(state.series).forEach(function(k){state.series[k]=true;});
+  syncLegend();syncChips();draw();render();document.getElementById("q").focus();
+});
 draw(); render();
 })();
 </script>
