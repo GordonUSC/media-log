@@ -9,9 +9,45 @@ let selectedTopic='ai';
 function showTopic(key){selectedTopic=key;const t=topics[key];document.querySelectorAll('[data-topic]').forEach(b=>{const selected=b.dataset.topic===key;b.setAttribute('aria-selected',selected);b.tabIndex=selected?0:-1});$('#topic-panel').setAttribute('aria-labelledby','tab-'+key);$('#topic-for').textContent=t.audience;$('#topic-title').textContent=t.title;$('#topic-description').textContent=t.description;$('#topic-outcomes').innerHTML=t.outcomes.map(x=>'<li>'+escapeHTML(x)+'</li>').join('');$('#topic-evidence').textContent=t.evidence;$('#topic-evidence').href=t.url}
 const tabs=[...document.querySelectorAll('[data-topic]')];tabs.forEach((b,i)=>{b.onclick=()=>showTopic(b.dataset.topic);b.onkeydown=e=>{if(!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Home','End'].includes(e.key))return;e.preventDefault();const n=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(['ArrowRight','ArrowDown'].includes(e.key)?1:tabs.length-1))%tabs.length;tabs[n].focus();showTopic(tabs[n].dataset.topic)}});
 $('#play-video').onclick=()=>{const player=$('#video-player');player.hidden=false;player.innerHTML='<iframe title="Gordon Bellamy at UConn: fireside conversation" src="https://www.youtube-nocookie.com/embed/Lb8ZcOXPQ-I?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';$('#play-video').hidden=true;player.querySelector('iframe').focus()};
-let filter='all',limit=8;const entries=[...(window.MEDIA_ENTRIES||[])].sort((a,b)=>Number(b.year)-Number(a.year));
-function renderRecord(){const term=$('#search').value.trim().toLowerCase();const found=entries.filter(e=>(filter==='all'||e.series===filter)&&[e.title,e.meta,e.search,e.note].join(' ').toLowerCase().includes(term));$('#record-count').textContent=`${found.length} matching ${found.length===1?'entry':'entries'} · showing ${Math.min(limit,found.length)} of ${found.length}`;$('#record-list').innerHTML=found.slice(0,limit).map(e=>`<article class="record-item"><span class="year">${escapeHTML(e.year)}</span><div><h3>${escapeHTML(e.title)}</h3><p class="meta">${escapeHTML(e.meta)}</p><details><summary>Context</summary><p>${escapeHTML(e.note)}</p></details></div><div class="record-source"><span>${escapeHTML(e.status)}</span>${e.url?`<a href="${escapeHTML(e.url)}" target="_blank" rel="noopener">Open source ↗</a>`:''}</div></article>`).join('')||'<p class="empty">No matching entries. Try another word or choose All.</p>';$('#more-records').hidden=limit>=found.length;$('#more-records').textContent=`Show ${Math.min(8,found.length-limit)} more appearances`;document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.filter===filter))}
-document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;limit=8;renderRecord()});$('#search').oninput=()=>{limit=8;renderRecord()};$('#more-records').onclick=()=>{limit+=8;renderRecord()};renderRecord();
+// The record can be bookmarked, including its category and search.
+const validFilters=['all','stage','screen','else'];
+let filter='all',limit=8;
+const entries=[...(window.MEDIA_ENTRIES||[])].sort((a,b)=>Number(b.year)-Number(a.year));
+const normalizeSearch=s=>String(s??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘]/g,"'").toLowerCase();
+function readRecordLocation(){
+  const params=new URLSearchParams(location.search);
+  filter=validFilters.includes(params.get('media'))?params.get('media'):'all';
+  $('#search').value=params.get('q')||'';
+  limit=8;
+}
+function saveRecordLocation(){
+  const url=new URL(location.href);
+  if(filter==='all')url.searchParams.delete('media');else url.searchParams.set('media',filter);
+  const query=$('#search').value.trim();
+  if(query)url.searchParams.set('q',query);else url.searchParams.delete('q');
+  // Replace rather than adding a browser-history entry for every keystroke.
+  url.hash='record';
+  history.replaceState(history.state,'',url);
+}
+function renderRecord(focusIndex){
+  const terms=normalizeSearch($('#search').value.trim()).split(/\s+/).filter(Boolean);
+  const found=entries.filter(e=>(filter==='all'||e.series===filter)&&terms.every(term=>normalizeSearch([e.year,e.title,e.meta,e.search,e.note,e.badge].join(' ')).includes(term)));
+  const expanded=new Set([...document.querySelectorAll('.record-item details[open]')].map(d=>d.closest('.record-item').dataset.entry));
+  $('#record-count').textContent=`${found.length} matching ${found.length===1?'entry':'entries'} · showing ${Math.min(limit,found.length)} of ${found.length}`;
+  $('#record-list').innerHTML=found.slice(0,limit).map(e=>`<article class="record-item" data-entry="${entries.indexOf(e)}"><span class="year">${escapeHTML(e.year)}</span><div><h3 tabindex="-1">${escapeHTML(e.title)}</h3><p class="meta">${escapeHTML(e.meta)}</p><details${expanded.has(String(entries.indexOf(e)))?' open':''}><summary>Context<span class="sr-only">: ${escapeHTML(e.title)}</span></summary><p>${escapeHTML(e.note)}</p></details></div><div class="record-source"><span>${escapeHTML(e.status)}</span>${e.url?`<a href="${escapeHTML(e.url)}" target="_blank" rel="noopener" aria-label="Open source for ${escapeHTML(e.title)} (opens in a new tab)">Open source ↗</a>`:''}</div></article>`).join('')||'<p class="empty">No matching entries. Try a title, year, venue, or person, or use “Clear search & filters” to start again.</p>';
+  $('#more-records').hidden=limit>=found.length;
+  $('#more-records').textContent=`Show ${Math.max(0,Math.min(8,found.length-limit))} more appearances`;
+  $('#reset-record').hidden=!terms.length&&filter==='all';
+  document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.filter===filter));
+  if(Number.isInteger(focusIndex))$('#record-list').querySelectorAll('h3')[focusIndex]?.focus({preventScroll:false});
+}
+function changeRecord(){limit=8;saveRecordLocation();renderRecord()}
+document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;changeRecord()});
+$('#search').oninput=changeRecord;
+$('#reset-record').onclick=()=>{filter='all';$('#search').value='';changeRecord();$('#search').focus()};
+$('#more-records').onclick=()=>{const firstNew=limit;limit+=8;renderRecord(firstNew)};
+window.addEventListener('popstate',()=>{readRecordLocation();renderRecord()});
+readRecordLocation();renderRecord();
 let toast;function tell(s){$('#status').textContent=s;clearTimeout(toast);toast=setTimeout(()=>$('#status').textContent='',5000)}
 async function copy(text,fallback){try{await navigator.clipboard.writeText(text);tell('Copied. Ready to share.')}catch{if(fallback){fallback.focus();fallback.select();tell('Select and copy the highlighted text.')}else tell('Copy is unavailable here. You can select the biography text directly.')}}
 function prepareBrief(){const board=$('#inquiry').value==='board';const org=$('#organization').value.trim();const need=$('#need').value.trim();const timing=$('#timing').value.trim();const text=board?`Hello Gordon, I’m interested in a paid board or strategic advisory conversation.\n\nOrganization: ${org||'[organization]'}\nCompany stage and proposed mandate: ${need||'[context and contribution needed]'}\nTiming: ${timing||'[planning window]'}\nRole type, expected commitment and compensation: [details]\n\nCould we explore whether this is a good fit?`:`Hello, I’m interested in booking Gordon Bellamy for a paid speaking engagement.\n\nProposed theme: ${topics[selectedTopic].title}\n\nOrganization / event: ${org||'[organization or event]'}\nAudience and desired outcome: ${need||'[audience and purpose]'}\nTiming: ${timing||'[date or planning window]'}\nLocation / format: [details]\nBudget range: [range]\n\nCould we discuss fit and availability?`;$('#brief-text').value=text;$('#brief-heading').textContent=board?'Start with the contribution you need.':'Give the booking team a useful brief.';$('#brief-guide').textContent=board?'This opens an email draft to Gordon. Review it in your email app before sending.':'Copy this brief, then visit Gordon’s Keppler profile to ask about fit, availability, and fees.';updateContact();return text}

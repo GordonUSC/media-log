@@ -16,7 +16,10 @@ The 49-record collection merges one duplicate, corrects MDEV's event year and th
 
 ## Local checks
 JavaScript syntax: node --check site.js
-Interaction test: node tests/interface.cjs (uses the existing isolated jsdom runtime at /tmp/gordtopia-engine-test; this dependency is not shipped to visitors).
+Dependency-free regression checks: `node tests/record-core.cjs` (mock DOM and static anchors; does not verify rendering).
+Full DOM checks: `node tests/interface.cjs` and `node tests/archive.cjs`, with jsdom available to Node. For an isolated existing install, set `JSDOM_PATH=/absolute/path/to/node_modules/jsdom`. Test dependencies are never shipped to visitors.
+
+The current record supports bookmarkable searches, for example `?media=screen&q=Netflix#record`. Categories are `stage`, `screen`, and `else`; omitting `media` searches all categories. Search matches all supplied words across years, titles, venues, people, and context. “Clear search & filters” returns to the full collection.
 
 ## Assets
 USC portrait: https://cinema.usc.edu/images/directory/66A6FD4F_DC09_4CA7_42C07DBE5C0971B9.jpg
